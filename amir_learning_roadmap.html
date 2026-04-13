@@ -1,0 +1,132 @@
+
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  .road { padding: 1rem 0; font-family: var(--font-sans); }
+  .road-title { font-size: 13px; font-weight: 500; color: var(--color-text-secondary); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 1.5rem; }
+  .phases { display: flex; flex-direction: column; gap: 0; }
+  .phase { display: flex; gap: 0; position: relative; }
+  .phase-line { display: flex; flex-direction: column; align-items: center; width: 40px; flex-shrink: 0; }
+  .phase-dot {
+    width: 28px; height: 28px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 500; flex-shrink: 0;
+    border: 1.5px solid; z-index: 1;
+  }
+  .phase-connector { width: 1px; flex: 1; min-height: 16px; }
+  .phase-body { padding: 0 0 28px 16px; flex: 1; }
+  .phase-num { font-size: 10px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 3px; }
+  .phase-name { font-size: 15px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 4px; }
+  .phase-sub { font-size: 12px; color: var(--color-text-secondary); line-height: 1.6; margin-bottom: 10px; }
+  .tasks { display: flex; flex-direction: column; gap: 4px; }
+  .task {
+    font-size: 12px; padding: 6px 10px;
+    border-radius: 6px; color: var(--color-text-secondary);
+    border: 0.5px solid var(--color-border-tertiary);
+    background: var(--color-background-secondary);
+    cursor: pointer; transition: all 0.2s;
+  }
+  .task:hover { color: var(--color-text-primary); border-color: var(--color-border-secondary); }
+  .task .tag { font-size: 10px; opacity: 0.6; float: right; }
+
+  /* Phase colors */
+  .p1 .phase-dot { background: #ff6d0815; border-color: #ff6d08; color: #ff6d08; }
+  .p1 .phase-connector { background: linear-gradient(to bottom, #ff6d0844, #ff6d0822); }
+  .p1 .phase-num { color: #ff6d08; }
+  .p2 .phase-dot { background: #ff6d0810; border-color: #ff6d0866; color: #ff6d0899; }
+  .p2 .phase-connector { background: linear-gradient(to bottom, #ff6d0822, #ff6d0811); }
+  .p2 .phase-num { color: #ff6d0899; }
+  .p3 .phase-dot { background: #ff6d0808; border-color: #ff6d0844; color: #ff6d0877; }
+  .p3 .phase-connector { background: linear-gradient(to bottom, #ff6d0811, #ff6d0808); }
+  .p3 .phase-num { color: #ff6d0877; }
+  .p4 .phase-dot { background: #ff6d0805; border-color: #ff6d0833; color: #ff6d0866; }
+  .p4 .phase-num { color: #ff6d0866; }
+
+  .badge {
+    display: inline-block; font-size: 9px; padding: 2px 7px;
+    border-radius: 20px; margin-left: 6px;
+    background: #ff6d0815; color: #ff6d08; border: 0.5px solid #ff6d0833;
+    vertical-align: middle; letter-spacing: 1px; font-weight: 500;
+  }
+  .you-are {
+    font-size: 10px; padding: 3px 8px; border-radius: 4px;
+    background: #ff6d0815; color: #ff6d08; border: 0.5px solid #ff6d0844;
+    display: inline-block; margin-bottom: 8px; letter-spacing: 1px;
+  }
+</style>
+
+<div class="road">
+  <div class="road-title">Your path to untouchable</div>
+  <div class="phases">
+
+    <div class="phase p1">
+      <div class="phase-line">
+        <div class="phase-dot">1</div>
+        <div class="phase-connector"></div>
+      </div>
+      <div class="phase-body">
+        <div class="you-are">→ START HERE</div>
+        <div class="phase-num">Phase 1 — Foundation</div>
+        <div class="phase-name">The skeleton + dark canvas <span class="badge">2–3 days</span></div>
+        <div class="phase-sub">HTML structure, CSS reset, variables, body background, nav bar.</div>
+        <div class="tasks">
+          <div class="task" onclick="sendPrompt('Start Phase 1 Task 1: teach me how to set up the HTML boilerplate and CSS reset for the portfolio')">Task 1 — HTML boilerplate &amp; file setup <span class="tag">HTML</span></div>
+          <div class="task" onclick="sendPrompt('Start Phase 1 Task 2: teach me CSS custom properties (variables) and how to set up the dark background and color system for the portfolio')">Task 2 — CSS variables &amp; dark background <span class="tag">CSS</span></div>
+          <div class="task" onclick="sendPrompt('Start Phase 1 Task 3: teach me how to build the fixed navigation bar with logo and links for the portfolio')">Task 3 — Fixed nav bar with scroll effect <span class="tag">CSS + JS</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase p2">
+      <div class="phase-line">
+        <div class="phase-dot">2</div>
+        <div class="phase-connector"></div>
+      </div>
+      <div class="phase-body">
+        <div class="phase-num">Phase 2 — The Hero</div>
+        <div class="phase-name">Orbit ring, name, animations <span class="badge">3–4 days</span></div>
+        <div class="phase-sub">Flexbox centering, CSS keyframes, the spinning orbit ring, staggered text entrance.</div>
+        <div class="tasks">
+          <div class="task" onclick="sendPrompt('Start Phase 2 Task 1: teach me flexbox centering to perfectly center the hero section content both vertically and horizontally')">Task 1 — Flexbox: centering everything <span class="tag">CSS</span></div>
+          <div class="task" onclick="sendPrompt('Start Phase 2 Task 2: teach me how to build the spinning orbit ring with CSS keyframes and pseudo-elements like in the portfolio')">Task 2 — Orbit ring with pseudo-elements <span class="tag">CSS</span></div>
+          <div class="task" onclick="sendPrompt('Start Phase 2 Task 3: teach me CSS keyframe animations — fadeIn, slideUp, staggered animation-delay — like in the portfolio hero')">Task 3 — Keyframe animations &amp; staggered reveals <span class="tag">CSS</span></div>
+          <div class="task" onclick="sendPrompt('Start Phase 2 Task 4: teach me how to do the animated scroll indicator line that grows and fades at the bottom of the hero')">Task 4 — Scroll indicator line animation <span class="tag">CSS</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase p3">
+      <div class="phase-line">
+        <div class="phase-dot">3</div>
+        <div class="phase-connector"></div>
+      </div>
+      <div class="phase-body">
+        <div class="phase-num">Phase 3 — Sections</div>
+        <div class="phase-name">About, Skills, Experience, Contact <span class="badge">4–5 days</span></div>
+        <div class="phase-sub">CSS Grid, scroll-reveal with IntersectionObserver, animated skill bars, timeline layout.</div>
+        <div class="tasks">
+          <div class="task" onclick="sendPrompt('Start Phase 3 Task 1: teach me CSS Grid to build the about section with a two-column layout and stat cards')">Task 1 — CSS Grid: about section &amp; stat cards <span class="tag">CSS</span></div>
+          <div class="task" onclick="sendPrompt('Start Phase 3 Task 2: teach me how to build the animated skill bars that fill up when they scroll into view')">Task 2 — Skill bars with scroll trigger <span class="tag">CSS + JS</span></div>
+          <div class="task" onclick="sendPrompt('Start Phase 3 Task 3: teach me how to build the timeline for the experience section using CSS positioning and pseudo-elements')">Task 3 — Timeline with pseudo-elements <span class="tag">CSS</span></div>
+          <div class="task" onclick="sendPrompt('Start Phase 3 Task 4: teach me IntersectionObserver in JavaScript to make elements reveal on scroll like the portfolio')">Task 4 — IntersectionObserver scroll reveals <span class="tag">JS</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase p4">
+      <div class="phase-line">
+        <div class="phase-dot">4</div>
+      </div>
+      <div class="phase-body">
+        <div class="phase-num">Phase 4 — Pro Touches</div>
+        <div class="phase-name">Custom cursor, noise, final polish <span class="badge">2 days</span></div>
+        <div class="phase-sub">The details that separate amateur from untouchable. Custom cursor, film grain overlay, hover micro-interactions, responsive design.</div>
+        <div class="tasks">
+          <div class="task" onclick="sendPrompt('Start Phase 4 Task 1: teach me how to build the custom animated cursor that follows the mouse and grows on hover')">Task 1 — Custom cursor with JS <span class="tag">JS + CSS</span></div>
+          <div class="task" onclick="sendPrompt('Start Phase 4 Task 2: teach me how to add the film grain noise overlay and scanlines effect using CSS and SVG filter')">Task 2 — Noise overlay &amp; scanlines effect <span class="tag">CSS</span></div>
+          <div class="task" onclick="sendPrompt('Start Phase 4 Task 3: teach me how to make the portfolio responsive for mobile with media queries')">Task 3 — Responsive &amp; mobile polish <span class="tag">CSS</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

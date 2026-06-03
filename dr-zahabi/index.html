@@ -7,8 +7,8 @@
     <!--=============== FAVICON ===============-->
     <link
       rel="shortcut icon"
-      href="assets/img/favicon.png"
-      type="image/x-icon"
+      href="assets/images/logo.png"
+      type="image/png"
     />
 
     <!--=============== REMIXICONS ===============-->
@@ -188,12 +188,25 @@
           <p class="about__description">
               دکتر پگاه زهابی، فارغ‌التحصیل پزشکی عمومی از دانشگاه شهید بهشتی، با بیش از ۱۰ سال تجربه در حوزه زیبایی و پزشکی زیباشناختی، یکی از متخصصان شناخته‌شده در این زمینه است.
           </p>
-          <div class="about__stats"></div>
+          <div class="about__stats">
+            <div class="about__stat">
+              <span class="about__stat-number">۱۰+</span>
+              <span class="about__stat-label">سال تجربه</span>
+            </div>
+            <div class="about__stat">
+              <span class="about__stat-number">۵۰۰۰+</span>
+              <span class="about__stat-label">بیمار</span>
+            </div>
+            <div class="about__stat">
+              <span class="about__stat-number">۵</span>
+              <span class="about__stat-label">خدمت تخصصی</span>
+            </div>
+          </div>
           <a href="#contact" class="button">رزرو وقت</a>
       </div>
 
       <div class="about__image">
-        <!-- <img src="./assets/images/drPegah.png" alt="Dr. Pegah" class="about__img"/> -->
+        <img src="./assets/images/drPegah.png" alt="Dr. Pegah" class="about__img"/>
       </div>
     </div>
 
@@ -204,16 +217,125 @@
       <section class="prices section" id="prices"></section>
 
       <!--==================== GALLERY ====================-->
-      <section class="gallery section"></section>
+      <section class="gallery section" id="gallery">
+        <div class="gallery__container container">
+          <h2 class="section__title">گالری<br><span>نمونه کارها</span></h2>
+          <div class="gallery__grid">
+            <div class="gallery__card"><div class="gallery__placeholder"></div><p class="gallery__label">بوتاکس</p></div>
+            <div class="gallery__card"><div class="gallery__placeholder"></div><p class="gallery__label">فیلر لب</p></div>
+            <div class="gallery__card"><div class="gallery__placeholder"></div><p class="gallery__label">مزوتراپی</p></div>
+            <div class="gallery__card"><div class="gallery__placeholder"></div><p class="gallery__label">لیفتینگ</p></div>
+            <div class="gallery__card"><div class="gallery__placeholder"></div><p class="gallery__label">پاکسازی پوست</p></div>
+            <div class="gallery__card"><div class="gallery__placeholder"></div><p class="gallery__label">جوانسازی</p></div>
+          </div>
+        </div>
+      </section>
 
       <!--==================== CONTACT ====================-->
-      <section class="contact section" id="contact"></section>
+      <section class="contact section" id="contact">
+        <div class="contact__container container grid">
+          <h2 class="section__title">تماس و<br><span>رزرو وقت</span></h2>
+
+          <div class="contact__wrapper">
+            <!-- Form -->
+            <div class="contact__form-card">
+              <h3 class="contact__form-title">فرم رزرو وقت</h3>
+              <form class="contact__form" id="contact-form">
+                <div class="contact__field">
+                  <label class="contact__label">نام و نام خانوادگی</label>
+                  <input type="text" class="contact__input" placeholder="نام خود را وارد کنید" required />
+                </div>
+                <div class="contact__field">
+                  <label class="contact__label">شماره تلفن</label>
+                  <input type="tel" class="contact__input" placeholder="۰۹۱۲۳۴۵۶۷۸۹" required />
+                </div>
+                <div class="contact__field">
+                  <label class="contact__label">انتخاب خدمت</label>
+                  <select class="contact__input contact__select" required>
+                    <option value="" disabled selected>خدمت مورد نظر را انتخاب کنید</option>
+                    <option value="botox">بوتاکس</option>
+                    <option value="filler">فیلر</option>
+                    <option value="meso">مزوتراپی</option>
+                    <option value="lifting">لیفتینگ</option>
+                    <option value="cleansing">پاکسازی</option>
+                  </select>
+                </div>
+                <div class="contact__field">
+                  <label class="contact__label">پیام</label>
+                  <textarea class="contact__input contact__textarea" placeholder="پیام یا سوال خود را بنویسید..." rows="4"></textarea>
+                </div>
+                <button type="submit" class="button contact__submit">ارسال درخواست</button>
+              </form>
+            </div>
+
+            <!-- Clinic Info -->
+            <div class="contact__info-card">
+              <h3 class="contact__info-title">اطلاعات کلینیک</h3>
+              <div class="contact__info-item">
+                <div class="contact__info-icon"><i class="fa-solid fa-phone"></i></div>
+                <div>
+                  <p class="contact__info-label">تلفن</p>
+                  <p class="contact__info-value" dir="ltr">۰۲۱-</p>
+                </div>
+              </div>
+              <div class="contact__info-item">
+                <div class="contact__info-icon"><i class="fa-solid fa-location-dot"></i></div>
+                <div>
+                  <p class="contact__info-label">آدرس</p>
+                  <p class="contact__info-value">تهران، خیابان  کلینیک زیبایی دکتر زهابی</p>
+                </div>
+              </div>
+              <div class="contact__info-item">
+                <div class="contact__info-icon"><i class="fa-brands fa-instagram"></i></div>
+                <div>
+                  <p class="contact__info-label">اینستاگرام</p>
+                  <p class="contact__info-value">@</p>
+                </div>
+              </div>
+              <div class="contact__info-item">
+                <div class="contact__info-icon"><i class="fa-solid fa-clock"></i></div>
+                <div>
+                  <p class="contact__info-label">ساعت کاری</p>
+                  <p class="contact__info-value">شنبه تا چهارشنبه، ۱۰ صبح تا ۷ شب</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
 
     <!--==================== FOOTER ====================-->
-    <footer class="footer"></footer>
+    <footer class="footer">
+      <div class="footer__container container">
+        <div class="footer__top">
+          <a href="#home" class="footer__logo">
+            <img src="./assets/images/logo.png" alt="logo" class="footer__logo-img" />
+            Dr. Pegah
+          </a>
+          <nav class="footer__nav">
+            <a href="#home" class="footer__link">صفحه اصلی</a>
+            <a href="#services" class="footer__link">خدمات</a>
+            <a href="#about" class="footer__link">درباره ما</a>
+            <a href="#gallery" class="footer__link">گالری</a>
+            <a href="#contact" class="footer__link">تماس</a>
+          </nav>
+          <div class="footer__socials">
+            <a href="#" class="footer__social" aria-label="اینستاگرام"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="footer__social" aria-label="تلگرام"><i class="fa-brands fa-telegram"></i></a>
+            <a href="#" class="footer__social" aria-label="واتساپ"><i class="fa-brands fa-whatsapp"></i></a>
+          </div>
+        </div>
+        <div class="footer__bottom">
+          <p class="footer__copy">© ۱۴۰۴ کلینیک زیبایی دکتر پگاه زهابی — تمامی حقوق محفوظ است.</p>
+        </div>
+      </div>
+    </footer>
 
     <!--========== SCROLL UP ==========-->
+    <a href="#home" class="scrollup" id="scroll-up">
+      <i class="fa-solid fa-angle-up"></i>
+    </a>
     <!--=============== SCROLLREVEAL ===============-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/scrollReveal.js/4.0.9/scrollreveal.min.js"></script>
 

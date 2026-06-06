@@ -589,13 +589,31 @@ margin-bottom: 2rem;
 
   .services__grid {
     display: grid;
-    grid-template-columns: repeat(7, 240px);
-    grid-template-rows: 1fr;
-    column-gap: 2.5rem;
+    grid-template-columns: repeat(7, 220px);
+    grid-template-rows: 180px;
+    align-items: stretch;
+    column-gap: 2rem;
     padding-bottom: 2rem;
     overflow-x: auto;
     overflow-y: hidden;
-
+  }
+  .services__card {
+    height: 180px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .services__img-placeholder {
+    display: none;
+  }
+  .service__name {
+    font-size: var(--small-font-size);
+    white-space: nowrap;
+  }
+  .service__description {
+    font-size: .75rem;
+    text-align: center;
+    white-space: nowrap;
   }
   .services__grid::-webkit-scrollbar {
     background-color: var(--gray-color);

@@ -43,11 +43,11 @@
         </a>
         <div class="nav__menu" id="nav--menu">
           <ul class="nav__list">
-            <li><a href="#home" class="nav__link">صفحه اصلی</a></li>
-            <li><a href="#services" class="nav__link">خدمات</a></li>
-            <li><a href="#about" class="nav__link">درباره دکتر زهابی</a></li>
-            <li><a href="#gallery" class="nav__link">گالری</a></li>
-            <li><a href="#contact" class="nav__link">تماس و رزرو وقت</a></li>
+            <li><a href="#home" class="nav__link" data-i18n="nav_home">صفحه اصلی</a></li>
+            <li><a href="#services" class="nav__link" data-i18n="nav_services">خدمات</a></li>
+            <li><a href="#about" class="nav__link" data-i18n="nav_about">درباره دکتر زهابی</a></li>
+            <li><a href="#gallery" class="nav__link" data-i18n="nav_gallery">گالری</a></li>
+            <li><a href="#contact" class="nav__link" data-i18n="nav_contact">تماس و رزرو وقت</a></li>
           </ul>
 
           <!-- Close Btn -->
@@ -56,6 +56,18 @@
           </div>
         </div>
         <div class="nav__buttons">
+          <!-- Language Dropdown -->
+          <div class="nav__lang" id="lang-dropdown">
+            <button class="nav__lang-btn" id="lang-btn">
+              <i class="fa-solid fa-globe"></i>
+              <span id="lang-label">FA</span>
+              <i class="fa-solid fa-chevron-down nav__lang-arrow"></i>
+            </button>
+            <ul class="nav__lang-menu" id="lang-menu">
+              <li class="nav__lang-item active" data-lang="fa">فارسی</li>
+              <li class="nav__lang-item" data-lang="en">English</li>
+            </ul>
+          </div>
           <!-- Theme Button  -->
           <i class="fa-solid fa-moon nav__theme" id="theme-button"></i>
           <div class="nav__toggle" id="nav-toggle">

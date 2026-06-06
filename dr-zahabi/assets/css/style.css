@@ -85,6 +85,90 @@ img {
 }
 
 /*=============== THEME ===============*/
+body.dark-theme {
+  --title-color: hsl(271, 40%, 90%);
+  --text-color: hsl(271, 8%, 75%);
+  --white-color-light: hsl(271, 30%, 70%);
+  --body-color: hsl(271, 20%, 10%);
+  --gray-color: hsla(271, 10%, 20%, 0.9);
+  --white-color: hsl(271, 20%, 95%);
+}
+body.dark-theme .nav {
+  background-color: hsl(271, 25%, 13%);
+}
+body.dark-theme .nav__menu {
+  background-color: hsl(271, 25%, 10%);
+}
+
+/*=============== LANGUAGE DROPDOWN ===============*/
+.nav__lang {
+  position: relative;
+}
+.nav__lang-btn {
+  display: flex;
+  align-items: center;
+  gap: .35rem;
+  background: hsla(271, 100%, 60%, 0.1);
+  border: 1px solid hsla(271, 100%, 60%, 0.25);
+  border-radius: .5rem;
+  padding: .35rem .65rem;
+  color: var(--title-color);
+  font-family: var(--body-font);
+  font-size: var(--small-font-size);
+  cursor: pointer;
+  transition: background .3s;
+}
+.nav__lang-btn:hover {
+  background: hsla(271, 100%, 60%, 0.2);
+}
+.nav__lang-btn i { font-size: .85rem; color: var(--first-color); }
+.nav__lang-arrow { transition: transform .3s; }
+.nav__lang.open .nav__lang-arrow { transform: rotate(180deg); }
+
+.nav__lang-menu {
+  position: absolute;
+  top: calc(100% + .5rem);
+  left: 0;
+  background-color: var(--white-color);
+  border: 1px solid hsla(271, 100%, 60%, 0.2);
+  border-radius: .75rem;
+  padding: .4rem;
+  min-width: 110px;
+  display: none;
+  flex-direction: column;
+  gap: .2rem;
+  box-shadow: 0 8px 24px hsla(271, 100%, 40%, 0.15);
+  z-index: 200;
+}
+.nav__lang.open .nav__lang-menu { display: flex; }
+
+.nav__lang-item {
+  padding: .45rem .75rem;
+  border-radius: .5rem;
+  font-size: var(--small-font-size);
+  color: var(--title-color);
+  cursor: pointer;
+  transition: background .2s;
+}
+.nav__lang-item:hover { background: hsla(271, 100%, 60%, 0.1); }
+.nav__lang-item.active {
+  background: hsla(271, 100%, 60%, 0.15);
+  color: var(--first-color);
+  font-weight: var(--font-semi-bold);
+}
+body.dark-theme .nav__lang-menu {
+  background-color: hsl(271, 25%, 14%);
+}
+
+/* LTR layout for English */
+body.ltr-lang {
+  direction: ltr;
+  text-align: left;
+}
+body.ltr-lang .about__description {
+  border-right: none;
+  border-left: 3px solid var(--first-color);
+}
 /*=============== REUSABLE CSS CLASSES ===============*/
 .container {
   max-width: 1120px;

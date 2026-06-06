@@ -589,10 +589,12 @@ margin-bottom: 2rem;
 
   .services__grid {
     display: grid;
-    grid-template-columns: repeat(5, 240px);
+    grid-template-columns: repeat(7, 240px);
+    grid-template-rows: 1fr;
     column-gap: 2.5rem;
     padding-bottom: 2rem;
-    overflow: auto;
+    overflow-x: auto;
+    overflow-y: hidden;
 
   }
   .services__grid::-webkit-scrollbar {

@@ -691,13 +691,16 @@ margin-bottom: 2rem;
     display: none;
   }
   .service__name {
-    font-size: var(--small-font-size);
+    font-size: var(--normal-font-size);
     white-space: nowrap;
+    font-weight: var(--font-semi-bold);
   }
   .service__description {
-    font-size: .75rem;
+    font-size: var(--small-font-size);
     text-align: center;
     white-space: nowrap;
+    color: hsl(271, 20%, 88%);
+    font-weight: var(--font-medium);
   }
   .services__grid::-webkit-scrollbar {
     background-color: var(--gray-color);
@@ -742,10 +745,10 @@ margin-bottom: 2rem;
 
   .service__name {
     text-align: center;
-    
   }
 .service__description {
     text-shadow: 0 0 10px hsla(271, 100%, 80%, 0.5);
+    color: hsl(271, 20%, 88%);
 }
 
 

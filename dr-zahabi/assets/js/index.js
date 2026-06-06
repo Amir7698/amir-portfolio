@@ -91,6 +91,8 @@ const translations = {
     stat1: 'سال تجربه', stat2: 'پرونده موفق', stat3: 'خدمت تخصصی',
     // Gallery
     gallery_title: 'گالری', gallery_subtitle: 'نمونه کارها',
+    gal1: 'بوتاکس', gal2: 'فیلر لب', gal3: 'مزوتراپی',
+    gal4: 'لیفتینگ', gal5: 'پاکسازی پوست', gal6: 'جوانسازی',
     // Contact
     contact_title: 'تماس و', contact_subtitle: 'رزرو وقت',
     form_title: 'فرم رزرو وقت', form_name: 'نام و نام خانوادگی',
@@ -131,6 +133,8 @@ const translations = {
     stat1: 'Years Experience', stat2: 'Successful Cases', stat3: 'Specialist Services',
     // Gallery
     gallery_title: 'Gallery', gallery_subtitle: 'Our Work',
+    gal1: 'Botox', gal2: 'Lip Filler', gal3: 'Mesotherapy',
+    gal4: 'Lifting', gal5: 'Skin Cleansing', gal6: 'Rejuvenation',
     // Contact
     contact_title: 'Contact &', contact_subtitle: 'Book Now',
     form_title: 'Booking Form', form_name: 'Full Name',
@@ -162,8 +166,6 @@ const applyLang = (lang) => {
   })
   document.getElementById('lang-label').textContent = lang.toUpperCase()
   document.documentElement.setAttribute('lang', lang)
-  document.documentElement.setAttribute('dir', lang === 'en' ? 'ltr' : 'rtl')
-  document.body.classList.toggle('ltr-lang', lang === 'en')
   document.querySelectorAll('.nav__lang-item').forEach(item => {
     item.classList.toggle('active', item.dataset.lang === lang)
   })

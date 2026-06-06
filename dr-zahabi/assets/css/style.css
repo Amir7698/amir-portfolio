@@ -99,6 +99,19 @@ body.dark-theme .nav {
 body.dark-theme .nav__menu {
   background-color: hsl(271, 25%, 10%);
 }
+/* About card always has dark bg — keep text light in both themes */
+.about__card .about__title,
+.about__card .about__subtitle,
+.about__card .about__description,
+.about__card .about__stat-label,
+.about__card .about__stat-number {
+  color: inherit;
+}
+.about__title     { color: var(--white-color) !important; }
+.about__subtitle  { color: var(--white-color-light) !important; }
+.about__description { color: hsl(0, 0%, 88%) !important; }
+.about__stat-number { color: var(--first-color) !important; }
+.about__stat-label  { color: hsl(271, 30%, 80%) !important; }
 
 /*=============== LANGUAGE DROPDOWN ===============*/
 .nav__lang {

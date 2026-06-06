@@ -748,22 +748,26 @@ margin-bottom: 2rem;
   justify-content: center;
 }
 
-/* عکس اصلی - بیضی بزرگ مرکز */
+/* عکس اصلی - قاب پرتره با گوشه‌های نامتقارن */
 .about__img-main {
   position: absolute;
   width: 220px;
   height: 290px;
-  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  border-radius: 60% 40% 55% 45% / 45% 45% 55% 55%;
   overflow: hidden;
   border: 4px solid var(--first-color);
-  box-shadow: 0 16px 48px hsla(271, 100%, 60%, 0.35);
+  box-shadow: 0 16px 48px hsla(271, 100%, 60%, 0.35),
+              inset 0 0 0 6px hsla(271, 100%, 60%, 0.08);
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) rotate(-3deg);
   z-index: 3;
-  transition: transform .4s;
+  transition: transform .4s, border-radius .4s;
 }
-.about__img-main:hover { transform: translate(-50%, -50%) rotate(0deg) scale(1.03); }
+.about__img-main:hover {
+  transform: translate(-50%, -50%) rotate(0deg) scale(1.03);
+  border-radius: 2rem;
+}
 .about__img-main img {
   width: 100%; height: 100%; object-fit: cover; object-position: top center;
 }
@@ -813,7 +817,7 @@ margin-bottom: 2rem;
   position: absolute;
   width: 250px;
   height: 320px;
-  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  border-radius: 63% 37% 58% 42% / 48% 48% 52% 52%;
   border: 2px dashed hsla(271, 100%, 70%, 0.35);
   top: 50%;
   left: 50%;

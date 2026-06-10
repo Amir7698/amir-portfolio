@@ -1,234 +1,222 @@
-/* ─── ANIMATIONS.JS — GSAP + ScrollTrigger ─── */
 'use strict';
-
 gsap.registerPlugin(ScrollTrigger);
 
-/* ══════════════════════════════════════
-   HERO SLIDER — curtain wipe + ken burns
-   ══════════════════════════════════════ */
-(function initSlider() {
-  const slides    = document.querySelectorAll('.slide');
-  const dots      = document.querySelectorAll('.sdot');
-  const curtain   = document.getElementById('slideCurtain');
-  const fill      = document.getElementById('slideProgressFill');
-  const counterEl = document.querySelector('.sc-current');
-  const total     = slides.length;
-  let current     = 0;
-  let timer       = null;
-  let isAnimating = false;
-
-  function pad(n) { return String(n + 1).padStart(2, '0'); }
-
-  function startProgress() {
-    if (!fill) return;
-    fill.classList.remove('running');
-    fill.style.width = '0%';
-    void fill.offsetWidth; // reflow
-    fill.classList.add('running');
-    fill.style.width = '100%';
-  }
-
-  function goTo(next, dir = 1) {
-    if (isAnimating || next === current) return;
-    isAnimating = true;
-    clearTimeout(timer);
-
-    const outSlide = slides[current];
-    const inSlide  = slides[next];
-
-    /* 1 — incoming slide instantly visible but under curtain */
-    gsap.set(inSlide, { opacity: 1, zIndex: 2 });
-    gsap.set(outSlide, { zIndex: 1 });
-
-    /* 2 — reset + position curtain on the entry side */
-    const fromX = dir >= 0 ? '100%' : '-100%';
-    const toX   = dir >= 0 ? '-100%' : '100%';
-    gsap.set(curtain, { x: fromX, opacity: 1 });
-
-    /* 3 — ken burns on incoming image */
-    const inImg = inSlide.querySelector('.slide-img');
-    gsap.set(inImg, { scale: 1.08 });
-    gsap.to(inImg, { scale: 1.0, duration: 7, ease: 'none' });
-
-    /* 4 — curtain sweeps across: enter → pause → exit */
-    const tl = gsap.timeline({
-      onComplete: () => {
-        gsap.set(outSlide, { opacity: 0, zIndex: 0 });
-        gsap.set(curtain, { opacity: 0 });
-        current = next;
-        isAnimating = false;
-        updateUI();
-        scheduleNext();
-        startProgress();
-      }
-    });
-
-    tl.to(curtain, { x: '0%', duration: 0.55, ease: 'power3.inOut' })
-      .to(curtain, { x: toX,  duration: 0.55, ease: 'power3.inOut', delay: 0.05 });
-  }
-
-  function updateUI() {
-    dots.forEach((d, i) => d.classList.toggle('active', i === current));
-    if (counterEl) counterEl.textContent = pad(current);
-  }
-
-  function scheduleNext() {
-    clearTimeout(timer);
-    timer = setTimeout(() => goTo((current + 1) % total, 1), 5000);
-  }
-
-  /* controls */
-  document.getElementById('slideNext')?.addEventListener('click', () => {
-    goTo((current + 1) % total, 1);
-  });
-  document.getElementById('slidePrev')?.addEventListener('click', () => {
-    goTo((current - 1 + total) % total, -1);
-  });
-  dots.forEach((dot, i) => {
-    dot.addEventListener('click', () => goTo(i, i > current ? 1 : -1));
-  });
-
-  /* keyboard */
-  document.addEventListener('keydown', e => {
-    if (e.key === 'ArrowRight') goTo((current + 1) % total, 1);
-    if (e.key === 'ArrowLeft')  goTo((current - 1 + total) % total, -1);
-  });
-
-  /* pause on hover */
-  document.getElementById('heroSlider')?.addEventListener('mouseenter', () => clearTimeout(timer));
-  document.getElementById('heroSlider')?.addEventListener('mouseleave', () => {
-    if (!isAnimating) scheduleNext();
-  });
-
-  /* init first slide */
-  gsap.set(slides[0], { opacity: 1 });
-  scheduleNext();
-  startProgress();
-})();
-
 /* ── Lenis smooth scroll ── */
-const lenis = new Lenis({
-  duration: 1.2,
-  easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-  smooth: true,
-});
-function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+const lenis = new Lenis({ duration: 1.15, easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
+function raf(t) { lenis.raf(t); requestAnimationFrame(raf); }
 requestAnimationFrame(raf);
 lenis.on('scroll', ScrollTrigger.update);
 gsap.ticker.lagSmoothing(0);
 
-/* ── Preloader ── */
+/* ══════════════════════════
+   PRELOADER
+══════════════════════════ */
 window.addEventListener('DOMContentLoaded', () => {
-  const fill = document.querySelector('.pre-fill');
+  const fill = document.getElementById('preFill');
   const pre  = document.getElementById('preloader');
-
-  gsap.to(fill, { width: '100%', duration: 1.4, ease: 'power2.inOut', onComplete: () => {
-    gsap.to(pre, {
-      opacity: 0, duration: 0.6, ease: 'power2.inOut', delay: 0.2,
-      onComplete: () => { pre.style.display = 'none'; revealHero(); }
-    });
-  }});
+  gsap.to(fill, {
+    width: '100%', duration: 1.5, ease: 'power2.inOut',
+    onComplete: () => gsap.to(pre, {
+      opacity: 0, duration: .6, delay: .15,
+      onComplete: () => { pre.style.display = 'none'; heroEntrance(); }
+    })
+  });
 });
 
-/* ── Hero entrance ── */
-function revealHero() {
-  const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+/* ══════════════════════════
+   HERO ENTRANCE
+══════════════════════════ */
+function heroEntrance() {
+  // eyebrow
+  document.querySelector('.hero-eyebrow')?.classList.add('in');
 
-  tl.to('.hero-eyebrow', { opacity: 1, y: 0, duration: 0.8 })
-    .to('.hero-title .word', {
-      y: 0, opacity: 1, duration: 1, stagger: 0.12, ease: 'power4.out'
-    }, '-=0.4')
-    .to('.hero-logo-wrap', { opacity: 1, y: 0, duration: 0.9 }, '-=0.6')
-    .to('.hero-sub', { opacity: 1, y: 0, duration: 0.7 }, '-=0.5')
-    .to('.hero-actions', { opacity: 1, y: 0, duration: 0.7 }, '-=0.5')
-    .to('.hero-scroll-hint', { opacity: 1, duration: 0.6 }, '-=0.3')
-    .to('.hero-address', { opacity: 1, duration: 0.6 }, '-=0.5');
+  // title lines — stagger
+  setTimeout(() => {
+    document.querySelectorAll('.hh1-line').forEach((line, i) => {
+      setTimeout(() => line.classList.add('in'), i * 130);
+    });
+  }, 200);
+
+  // desc + btns + scroll
+  setTimeout(() => {
+    document.querySelector('.hero-desc')?.classList.add('in');
+  }, 650);
+  setTimeout(() => {
+    document.querySelector('.hero-btns')?.classList.add('in');
+  }, 800);
+  setTimeout(() => {
+    document.querySelector('.hero-scroll')?.classList.add('in');
+  }, 1100);
 }
 
-/* ── Scroll reveal — data-reveal ── */
+/* ══════════════════════════
+   HERO SLIDER
+══════════════════════════ */
+(function initSlider() {
+  const slides  = document.querySelectorAll('.slide');
+  const dots    = document.querySelectorAll('.sdot');
+  const wipe    = document.getElementById('slideWipe');
+  const fill    = document.getElementById('spbFill');
+  const curEl   = document.getElementById('slCur');
+  const total   = slides.length;
+  let cur       = 0;
+  let busy      = false;
+  let timer;
+
+  const pad = n => String(n + 1).padStart(2, '0');
+
+  function startProg() {
+    if (!fill) return;
+    fill.style.transition = 'none';
+    fill.style.width = '0%';
+    void fill.offsetWidth;
+    fill.style.transition = 'width 5s linear';
+    fill.style.width = '100%';
+  }
+
+  function go(next, dir = 1) {
+    if (busy || next === cur) return;
+    busy = true;
+    clearTimeout(timer);
+
+    const outSlide = slides[cur];
+    const inSlide  = slides[next];
+    const inImg    = inSlide.querySelector('.slide-bg');
+
+    // prepare incoming
+    gsap.set(inSlide, { opacity: 1, zIndex: 2 });
+    gsap.set(outSlide, { zIndex: 1 });
+
+    // ken burns reset on incoming
+    gsap.set(inImg, { scale: 1.07 });
+    gsap.to(inImg, { scale: 1, duration: 7, ease: 'none' });
+
+    // curtain from entry side, sweep, exit
+    const fromX = dir >= 0 ? '100%' : '-100%';
+    const toX   = dir >= 0 ? '-100%' : '100%';
+    gsap.set(wipe, { x: fromX, opacity: 1 });
+
+    gsap.timeline({ onComplete() {
+      gsap.set(outSlide, { opacity: 0, zIndex: 0 });
+      gsap.set(wipe, { opacity: 0 });
+      cur = next;
+      busy = false;
+      updateUI();
+      schedNext();
+      startProg();
+    }})
+    .to(wipe, { x: '0%',  duration: .55, ease: 'power3.inOut' })
+    .to(wipe, { x: toX,   duration: .55, ease: 'power3.inOut', delay: .04 });
+  }
+
+  function updateUI() {
+    dots.forEach((d, i) => d.classList.toggle('is-active', i === cur));
+    if (curEl) curEl.textContent = pad(cur);
+  }
+
+  function schedNext() {
+    clearTimeout(timer);
+    timer = setTimeout(() => go((cur + 1) % total, 1), 5000);
+  }
+
+  document.getElementById('slNext')?.addEventListener('click', () => go((cur + 1) % total, 1));
+  document.getElementById('slPrev')?.addEventListener('click', () => go((cur - 1 + total) % total, -1));
+  dots.forEach((d, i) => d.addEventListener('click', () => go(i, i > cur ? 1 : -1)));
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight') go((cur + 1) % total, 1);
+    if (e.key === 'ArrowLeft')  go((cur - 1 + total) % total, -1);
+  });
+  const hs = document.getElementById('heroSlider');
+  hs?.addEventListener('mouseenter', () => clearTimeout(timer));
+  hs?.addEventListener('mouseleave', () => { if (!busy) schedNext(); });
+
+  schedNext();
+  startProg();
+})();
+
+/* ══════════════════════════
+   SCROLL REVEAL — GSAP
+══════════════════════════ */
+// left reveal
 document.querySelectorAll('[data-reveal]').forEach(el => {
   gsap.fromTo(el,
-    { opacity: 0, y: 30 },
-    {
-      opacity: 1, y: 0, duration: 1, ease: 'power3.out',
-      scrollTrigger: { trigger: el, start: 'top 85%', once: true }
-    }
+    { opacity: 0, x: -40 },
+    { opacity: 1, x: 0, duration: 1, ease: 'power3.out',
+      scrollTrigger: { trigger: el, start: 'top 82%', once: true } }
   );
 });
 
-/* ── Scroll reveal up — data-reveal-up ── */
+// right reveal
+document.querySelectorAll('[data-reveal-r]').forEach(el => {
+  gsap.fromTo(el,
+    { opacity: 0, x: 40 },
+    { opacity: 1, x: 0, duration: 1, ease: 'power3.out',
+      scrollTrigger: { trigger: el, start: 'top 82%', once: true } }
+  );
+});
+
+// up reveal
 document.querySelectorAll('[data-reveal-up]').forEach(el => {
   gsap.fromTo(el,
-    { opacity: 0, y: 50 },
-    {
-      opacity: 1, y: 0, duration: 1.1, ease: 'power3.out',
-      scrollTrigger: { trigger: el, start: 'top 82%', once: true }
-    }
+    { opacity: 0, y: 45 },
+    { opacity: 1, y: 0, duration: 1, ease: 'power3.out',
+      scrollTrigger: { trigger: el, start: 'top 82%', once: true } }
   );
 });
 
-/* ── Service items stagger ── */
-gsap.fromTo('[data-service]',
-  { opacity: 0, x: -30 },
-  {
-    opacity: 1, x: 0, duration: 0.7, stagger: 0.1, ease: 'power2.out',
-    scrollTrigger: { trigger: '#servizi', start: 'top 70%', once: true }
-  }
-);
+// service + review cards (JS-driven because of CSS transition fallback)
+['[data-reveal-up].sv-card', '[data-reveal-up].rv-card'].forEach(sel => {
+  document.querySelectorAll(sel).forEach(el => {
+    ScrollTrigger.create({
+      trigger: el, start: 'top 85%', once: true,
+      onEnter: () => el.classList.add('in')
+    });
+  });
+});
+
+// section titles split + clip
+document.querySelectorAll('.s-title').forEach(el => {
+  gsap.fromTo(el,
+    { opacity: 0, y: 25 },
+    { opacity: 1, y: 0, duration: .9, ease: 'power3.out',
+      scrollTrigger: { trigger: el, start: 'top 85%', once: true } }
+  );
+});
 
 /* ── Gallery parallax ── */
-document.querySelectorAll('[data-parallax]').forEach(el => {
-  const speed = parseFloat(el.dataset.parallax);
-  const img = el.querySelector('img');
-  if (!img) return;
-  gsap.to(img, {
-    yPercent: -100 * speed,
-    ease: 'none',
-    scrollTrigger: {
-      trigger: el,
-      start: 'top bottom',
-      end: 'bottom top',
-      scrub: true,
+document.querySelectorAll('.gm-item img').forEach(img => {
+  gsap.fromTo(img,
+    { yPercent: -8 },
+    { yPercent: 8, ease: 'none',
+      scrollTrigger: { trigger: img, start: 'top bottom', end: 'bottom top', scrub: true } }
+  );
+});
+
+/* ── Hero content parallax ── */
+gsap.to('.hero-content', {
+  yPercent: 18, ease: 'none',
+  scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: true }
+});
+
+/* ══════════════════════════
+   ANIMATED COUNTERS
+══════════════════════════ */
+document.querySelectorAll('[data-count]').forEach(el => {
+  const target = parseInt(el.dataset.count);
+  ScrollTrigger.create({
+    trigger: el, start: 'top 85%', once: true,
+    onEnter() {
+      gsap.to({ val: 0 }, {
+        val: target, duration: 1.8, ease: 'power2.out',
+        onUpdate() { el.textContent = Math.round(this.targets()[0].val); }
+      });
     }
   });
 });
 
-/* ── Orari rows stagger ── */
-gsap.fromTo('.ot-row',
-  { opacity: 0, x: 20 },
-  {
-    opacity: 1, x: 0, duration: 0.5, stagger: 0.08, ease: 'power2.out',
-    scrollTrigger: { trigger: '.orari-table', start: 'top 80%', once: true }
-  }
-);
-
-/* ── Section number counter feel ── */
-document.querySelectorAll('.section-num').forEach(el => {
-  gsap.fromTo(el,
-    { opacity: 0, scale: 0.8 },
-    {
-      opacity: 1, scale: 1, duration: 1, ease: 'power3.out',
-      scrollTrigger: { trigger: el, start: 'top 85%', once: true }
-    }
-  );
-});
-
-/* ── Nav parallax on hero ── */
-gsap.to('#hero .hero-content', {
-  yPercent: 25,
-  ease: 'none',
-  scrollTrigger: {
-    trigger: '#hero',
-    start: 'top top',
-    end: 'bottom top',
-    scrub: true,
-  }
-});
-
-/* ── WA float show after scroll ── */
+/* ── WA FAB show ── */
 ScrollTrigger.create({
-  trigger: '#servizi',
-  start: 'top 80%',
-  onEnter: () => document.querySelector('.wa-float')?.classList.add('visible'),
-  onLeaveBack: () => document.querySelector('.wa-float')?.classList.remove('visible'),
+  trigger: '#servizi', start: 'top 80%',
+  onEnter: () => document.querySelector('.wa-fab')?.classList.add('show'),
+  onLeaveBack: () => document.querySelector('.wa-fab')?.classList.remove('show'),
 });

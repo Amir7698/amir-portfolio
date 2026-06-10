@@ -6,454 +6,508 @@
   <title>Afshin Hair Style – Barber Shop Cuneo</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@200;300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@200;300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 
-  <!-- PRELOADER -->
-  <div id="preloader">
-    <div class="pre-inner">
-      <div class="pre-logo">
-        <img src="assets/logo.png" alt="Afshin" onerror="this.style.display='none';document.querySelector('.pre-text').style.display='block'" />
-        <span class="pre-text" style="display:none">AFSHIN</span>
-      </div>
-      <div class="pre-bar"><div class="pre-fill"></div></div>
-      <span class="pre-label">CUNEO, ITALIA</span>
+<!-- PRELOADER -->
+<div id="preloader">
+  <div class="pre-inner">
+    <div class="pre-logo">
+      <img src="assets/logo.png" alt="Afshin" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
+      <span class="pre-wordmark" style="display:none">AFSHIN</span>
     </div>
+    <div class="pre-bar"><div class="pre-fill" id="preFill"></div></div>
+    <span class="pre-tag">Est. 2015 · Cuneo, Italia</span>
   </div>
+</div>
 
-  <!-- CURSOR -->
-  <div id="cursor"></div>
-  <div id="cursor-follow"></div>
+<!-- CURSOR -->
+<div id="cursor"></div>
+<div id="cursor-trail"></div>
 
-  <!-- NAV -->
-  <nav id="nav">
-    <div class="nav-brand">
-      <span class="brand-af">AF</span><span class="brand-shin">SHIN</span>
-    </div>
-    <ul class="nav-links">
-      <li><a href="#servizi" data-nav>Servizi</a></li>
-      <li><a href="#galleria" data-nav>Galleria</a></li>
-      <li><a href="#orari" data-nav>Orari</a></li>
-      <li><a href="#contatti" data-nav>Contatti</a></li>
-    </ul>
-    <a href="#prenota" class="nav-book" data-magnetic>Prenota</a>
-    <button class="burger" id="burger" aria-label="Menu">
-      <span></span><span></span>
-    </button>
+<!-- ═══ NAV ═══ -->
+<nav id="nav">
+  <a class="nav-brand" href="#hero">
+    <span class="nb-af">AF</span><span class="nb-shin">SHIN</span>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about">About</a></li>
+    <li><a href="#servizi">Servizi</a></li>
+    <li><a href="#galleria">Galleria</a></li>
+    <li><a href="#team">Il Maestro</a></li>
+    <li><a href="#contatti">Contatti</a></li>
+  </ul>
+  <a href="#prenota" class="nav-cta" data-magnetic>Prenota Ora</a>
+  <button class="burger" id="burger"><span></span><span></span></button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mob-overlay" id="mobOverlay">
+  <nav class="mob-nav">
+    <a href="#about"    class="mob-link"><span>01</span>About</a>
+    <a href="#servizi"  class="mob-link"><span>02</span>Servizi</a>
+    <a href="#galleria" class="mob-link"><span>03</span>Galleria</a>
+    <a href="#team"     class="mob-link"><span>04</span>Il Maestro</a>
+    <a href="#prenota"  class="mob-link"><span>05</span>Prenota</a>
+    <a href="#contatti" class="mob-link"><span>06</span>Contatti</a>
   </nav>
+  <div class="mob-footer">
+    <p>+39 351 262 8553</p>
+    <p>Corso Galileo Ferraris 29, Cuneo</p>
+  </div>
+</div>
 
-  <!-- MOBILE MENU -->
-  <div class="mob-menu" id="mobMenu">
-    <ul>
-      <li><a href="#servizi" class="mob-link">Servizi</a></li>
-      <li><a href="#galleria" class="mob-link">Galleria</a></li>
-      <li><a href="#orari" class="mob-link">Orari</a></li>
-      <li><a href="#contatti" class="mob-link">Contatti</a></li>
-      <li><a href="#prenota" class="mob-link">Prenota</a></li>
-    </ul>
+<!-- ═══ HERO ═══ -->
+<section id="hero">
+  <!-- Slider -->
+  <div class="slider" id="heroSlider">
+    <div class="slide is-active">
+      <div class="slide-bg" style="background-image:url('assets/shop2.jpg')"></div>
+    </div>
+    <div class="slide">
+      <div class="slide-bg" style="background-image:url('assets/shop1.jpg')"></div>
+    </div>
+    <div class="slide">
+      <div class="slide-bg" style="background-image:url('assets/logo.png');background-size:contain;background-repeat:no-repeat;"></div>
+    </div>
+    <div class="slide-wipe" id="slideWipe"></div>
+    <div class="slide-progress-bar"><div class="spb-fill" id="spbFill"></div></div>
+  </div>
+  <div class="hero-dim"></div>
+  <div class="hero-vignette"></div>
+
+  <!-- Content -->
+  <div class="hero-content">
+    <p class="hero-eyebrow" data-anim="fade-up">— Barber Shop · Cuneo · Est. 2015</p>
+    <h1 class="hero-h1">
+      <span class="hh1-line" data-anim="clip-up">L'Arte</span>
+      <span class="hh1-line accent" data-anim="clip-up" style="transition-delay:.12s">del Barbiere</span>
+      <span class="hh1-line" data-anim="clip-up" style="transition-delay:.24s">Perfetto</span>
+    </h1>
+    <p class="hero-desc" data-anim="fade-up" style="transition-delay:.4s">
+      Taglio su misura · Barba a mano libera · Stile senza compromessi
+    </p>
+    <div class="hero-btns" data-anim="fade-up" style="transition-delay:.55s">
+      <a href="#prenota" class="btn-fill" data-magnetic>Prenota Appuntamento</a>
+      <a href="#servizi" class="btn-line" data-magnetic>Scopri i Servizi</a>
+    </div>
   </div>
 
-  <!-- HERO -->
-  <section id="hero">
-    <!-- SLIDER BACKGROUND -->
-    <div class="slider" id="heroSlider">
-      <div class="slide active" style="--bg:url('assets/shop1.jpg')">
-        <div class="slide-img" style="background-image:url('assets/shop1.jpg')"></div>
-      </div>
-      <div class="slide" style="--bg:url('assets/shop2.jpg')">
-        <div class="slide-img" style="background-image:url('assets/shop2.jpg')"></div>
-      </div>
-      <div class="slide" style="--bg:url('assets/logo.png')">
-        <div class="slide-img slide-logo-bg" style="background-image:url('assets/logo.png')"></div>
-      </div>
-      <!-- Clip reveal layer -->
-      <div class="slide-curtain" id="slideCurtain"></div>
-      <!-- progress bar -->
-      <div class="slide-progress"><div class="slide-progress-fill" id="slideProgressFill"></div></div>
-    </div>
-    <div class="slider-overlay"></div>
-
-    <!-- Slide counter -->
-    <div class="slide-counter" id="slideCounter">
-      <span class="sc-current">01</span>
-      <span class="sc-sep"></span>
+  <!-- Slider controls -->
+  <div class="slider-ui">
+    <div class="slider-counter">
+      <span id="slCur" class="sc-num">01</span>
+      <span class="sc-bar"></span>
       <span class="sc-total">03</span>
     </div>
+    <div class="slider-dots" id="sliderDots">
+      <button class="sdot is-active" data-i="0"></button>
+      <button class="sdot" data-i="1"></button>
+      <button class="sdot" data-i="2"></button>
+    </div>
+  </div>
+  <button class="sl-arrow sl-prev" id="slPrev">&#8592;</button>
+  <button class="sl-arrow sl-next" id="slNext">&#8594;</button>
 
-    <!-- Slide dots -->
-    <div class="slide-dots" id="slideDots">
-      <button class="sdot active" data-idx="0"></button>
-      <button class="sdot" data-idx="1"></button>
-      <button class="sdot" data-idx="2"></button>
+  <div class="hero-scroll">
+    <div class="hs-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- ═══ MARQUEE ═══ -->
+<div class="marquee-band">
+  <div class="marquee-inner">
+    <span>TAGLIO CAPELLI</span><i>◆</i>
+    <span>BARBA COMPLETA</span><i>◆</i>
+    <span>AFSHIN HAIR STYLE</span><i>◆</i>
+    <span>CUNEO ITALIA</span><i>◆</i>
+    <span>EST. 2015</span><i>◆</i>
+    <span>TAGLIO CAPELLI</span><i>◆</i>
+    <span>BARBA COMPLETA</span><i>◆</i>
+    <span>AFSHIN HAIR STYLE</span><i>◆</i>
+    <span>CUNEO ITALIA</span><i>◆</i>
+    <span>EST. 2015</span><i>◆</i>
+  </div>
+</div>
+
+<!-- ═══ ABOUT ═══ -->
+<section id="about" class="section">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-imgs" data-reveal>
+        <div class="ai-main">
+          <img src="assets/shop1.jpg" alt="Afshin Barber Interior"
+            onerror="this.parentElement.classList.add('img-empty')" />
+        </div>
+        <div class="ai-accent">
+          <img src="assets/shop2.jpg" alt="Postazione"
+            onerror="this.parentElement.classList.add('img-empty')" />
+          <div class="ai-badge">
+            <span class="aib-num">10+</span>
+            <span class="aib-txt">Anni di<br>Esperienza</span>
+          </div>
+        </div>
+      </div>
+      <div class="about-text" data-reveal-r>
+        <p class="s-label">— Chi Siamo</p>
+        <h2 class="s-title">Una Tradizione<br><em>di Stile</em></h2>
+        <div class="s-divider"></div>
+        <p class="s-body">
+          Benvenuto da <strong>Afshin Hair Style</strong>, il barber shop di riferimento nel cuore di Cuneo.
+          Qui ogni taglio è un'opera d'arte: combiniamo le tecniche tradizionali del barbiere classico
+          con le tendenze più moderne per offrirti un'esperienza unica.
+        </p>
+        <p class="s-body">
+          Che tu cerchi una sfumatura perfetta, una barba impeccabile o un look completamente nuovo,
+          siamo qui per trasformare la tua visione in realtà.
+        </p>
+        <div class="about-stats">
+          <div class="ast-item">
+            <span class="ast-num" data-count="500">0</span><span class="ast-plus">+</span>
+            <span class="ast-lab">Clienti</span>
+          </div>
+          <div class="ast-item">
+            <span class="ast-num" data-count="10">0</span><span class="ast-plus">+</span>
+            <span class="ast-lab">Anni</span>
+          </div>
+          <div class="ast-item">
+            <span class="ast-num" data-count="5">0</span><span class="ast-plus">★</span>
+            <span class="ast-lab">Stelle</span>
+          </div>
+        </div>
+        <a href="#prenota" class="btn-fill" data-magnetic>Prenota Ora</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SERVIZI ═══ -->
+<section id="servizi" class="section section-alt">
+  <div class="container">
+    <div class="s-head" data-reveal>
+      <div>
+        <p class="s-label">— Cosa Offriamo</p>
+        <h2 class="s-title">I Nostri <em>Servizi</em></h2>
+      </div>
+      <p class="s-head-note">Ogni servizio è pensato<br>per valorizzare il tuo stile.</p>
     </div>
 
-    <!-- Slide arrows -->
-    <button class="slide-arrow prev" id="slidePrev" aria-label="Precedente">&#8592;</button>
-    <button class="slide-arrow next" id="slideNext" aria-label="Successivo">&#8594;</button>
-
-    <div class="hero-noise"></div>
-
-    <div class="hero-content">
-      <div class="hero-eyebrow">
-        <span class="line"></span>
-        <span class="txt">Barber Shop · Cuneo · Est. 2015</span>
-        <span class="line"></span>
+    <div class="services-grid">
+      <div class="sv-card" data-reveal-up>
+        <div class="sv-icon">✂️</div>
+        <div class="sv-line"></div>
+        <h3 class="sv-name">Taglio Capelli</h3>
+        <p class="sv-desc">Sfumatura classica o look moderno, lavaggio e styling inclusi.</p>
+        <div class="sv-footer">
+          <span class="sv-price">€ 15</span>
+          <a href="#prenota" class="sv-btn">Prenota →</a>
+        </div>
       </div>
-      <h1 class="hero-title">
-        <span class="word">L'Arte</span>
-        <span class="word">del</span>
-        <em class="word italic">Barbiere</em>
-      </h1>
-      <div class="hero-logo-wrap">
-        <img src="assets/logo.png" alt="Afshin Hair Style" class="hero-logo"
-          onerror="this.parentElement.style.display='none'" />
+      <div class="sv-card" data-reveal-up style="--d:.1s">
+        <div class="sv-icon">🪒</div>
+        <div class="sv-line"></div>
+        <h3 class="sv-name">Barba Completa</h3>
+        <p class="sv-desc">Rasoio a mano libera, hot towel e oli pregiati per una finitura impeccabile.</p>
+        <div class="sv-footer">
+          <span class="sv-price">€ 12</span>
+          <a href="#prenota" class="sv-btn">Prenota →</a>
+        </div>
       </div>
-      <p class="hero-sub">Taglio — Barba — Stile</p>
-      <div class="hero-actions">
-        <a href="#prenota" class="btn-main" data-magnetic>Prenota Appuntamento</a>
-        <a href="https://wa.me/393512628553" class="btn-ghost" target="_blank" data-magnetic>
+      <div class="sv-card" data-reveal-up style="--d:.2s">
+        <div class="sv-icon">💈</div>
+        <div class="sv-line"></div>
+        <h3 class="sv-name">Taglio + Barba</h3>
+        <p class="sv-desc">Il pacchetto completo per il gentiluomo moderno. Il meglio in un'unica visita.</p>
+        <div class="sv-footer">
+          <span class="sv-price">€ 25</span>
+          <a href="#prenota" class="sv-btn">Prenota →</a>
+        </div>
+      </div>
+      <div class="sv-card" data-reveal-up style="--d:.3s">
+        <div class="sv-icon">🧴</div>
+        <div class="sv-line"></div>
+        <h3 class="sv-name">Trattamento</h3>
+        <p class="sv-desc">Maschera nutriente, colorazione o trattamento anti-caduta su misura.</p>
+        <div class="sv-footer">
+          <span class="sv-price">€ 20</span>
+          <a href="#prenota" class="sv-btn">Prenota →</a>
+        </div>
+      </div>
+      <div class="sv-card" data-reveal-up style="--d:.4s">
+        <div class="sv-icon">👶</div>
+        <div class="sv-line"></div>
+        <h3 class="sv-name">Taglio Bambini</h3>
+        <p class="sv-desc">Ambiente rilassante, tanta pazienza e cura per i più piccoli.</p>
+        <div class="sv-footer">
+          <span class="sv-price">€ 10</span>
+          <a href="#prenota" class="sv-btn">Prenota →</a>
+        </div>
+      </div>
+      <div class="sv-card" data-reveal-up style="--d:.5s">
+        <div class="sv-icon">⚡</div>
+        <div class="sv-line"></div>
+        <h3 class="sv-name">Rifintura</h3>
+        <p class="sv-desc">Solo bordi, collo e finitura per mantenere il tuo look sempre preciso.</p>
+        <div class="sv-footer">
+          <span class="sv-price">€ 8</span>
+          <a href="#prenota" class="sv-btn">Prenota →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ GALLERIA ═══ -->
+<section id="galleria" class="section">
+  <div class="container">
+    <p class="s-label" data-reveal>— Il Nostro Spazio</p>
+    <h2 class="s-title" data-reveal>La <em>Galleria</em></h2>
+  </div>
+  <div class="gallery-mosaic" data-reveal-up>
+    <div class="gm-item gm-big">
+      <img src="assets/shop1.jpg" alt="Salone"
+        onerror="this.parentElement.classList.add('gm-empty')" />
+      <div class="gm-label">Il Salone</div>
+    </div>
+    <div class="gm-item">
+      <img src="assets/shop2.jpg" alt="Postazione"
+        onerror="this.parentElement.classList.add('gm-empty')" />
+      <div class="gm-label">Postazione Premium</div>
+    </div>
+    <div class="gm-item">
+      <img src="assets/logo.png" alt="Logo"
+        onerror="this.parentElement.classList.add('gm-empty')" />
+      <div class="gm-label">Afshin Hair Style</div>
+    </div>
+    <div class="gm-item gm-wide">
+      <img src="assets/shop2.jpg" alt="Interno"
+        onerror="this.parentElement.classList.add('gm-empty')" />
+      <div class="gm-label">Vista Interna</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TEAM ═══ -->
+<section id="team" class="section section-alt">
+  <div class="container">
+    <div class="team-grid">
+      <div class="team-img" data-reveal>
+        <div class="tim-frame">
+          <img src="assets/barber.jpg" alt="Afshin"
+            onerror="this.parentElement.classList.add('img-empty')" />
+        </div>
+        <div class="tim-deco"></div>
+      </div>
+      <div class="team-info" data-reveal-r>
+        <p class="s-label">— Il Maestro</p>
+        <h2 class="s-title"><em>Afshin</em></h2>
+        <div class="s-divider"></div>
+        <p class="s-body">
+          Con oltre 10 anni di esperienza nel mondo del barbiere, Afshin porta con sé una passione
+          autentica per l'arte del taglio. Formato nelle migliori tradizioni del barbiere persiano
+          e italiano, ogni cliente è per lui un'opera d'arte unica.
+        </p>
+        <p class="s-body">
+          "Il mio obiettivo non è solo tagliarti i capelli — è farti uscire di qui con un'altra
+          consapevolezza di te stesso."
+        </p>
+        <div class="team-tags">
+          <span>Taglio Classico</span>
+          <span>Fade & Sfumatura</span>
+          <span>Barba Tradizionale</span>
+          <span>Colorazione</span>
+        </div>
+        <a href="https://wa.me/393512628553" class="btn-line wa-link" target="_blank" data-magnetic>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-          WhatsApp
+          Scrivimi su WhatsApp
         </a>
       </div>
     </div>
+  </div>
+</section>
 
-    <div class="hero-scroll-hint">
-      <div class="scroll-line"></div>
-      <span>Scroll</span>
+<!-- ═══ TESTIMONIALS ═══ -->
+<section id="reviews" class="section">
+  <div class="container">
+    <div class="s-head center" data-reveal>
+      <p class="s-label">— Cosa Dicono i Clienti</p>
+      <h2 class="s-title">Le <em>Recensioni</em></h2>
     </div>
-
-    <div class="hero-address">
-      <span>Corso Galileo Ferraris 29</span>
-      <span class="sep">·</span>
-      <span>12100 Cuneo</span>
-    </div>
-  </section>
-
-  <!-- MARQUEE -->
-  <div class="marquee-strip">
-    <div class="marquee-track">
-      <span>TAGLIO CAPELLI</span><span class="dot">◆</span>
-      <span>BARBA COMPLETA</span><span class="dot">◆</span>
-      <span>AFSHIN HAIR STYLE</span><span class="dot">◆</span>
-      <span>CUNEO, ITALIA</span><span class="dot">◆</span>
-      <span>DEPUIS 2015</span><span class="dot">◆</span>
-      <span>TAGLIO CAPELLI</span><span class="dot">◆</span>
-      <span>BARBA COMPLETA</span><span class="dot">◆</span>
-      <span>AFSHIN HAIR STYLE</span><span class="dot">◆</span>
-      <span>CUNEO, ITALIA</span><span class="dot">◆</span>
-      <span>DEPUIS 2015</span><span class="dot">◆</span>
+    <div class="reviews-grid">
+      <div class="rv-card" data-reveal-up>
+        <div class="rv-stars">★★★★★</div>
+        <p class="rv-text">"Afshin è semplicemente il migliore. Vengo da lui da 3 anni e non cambierò mai barbiere. Ogni volta esco con un look perfetto."</p>
+        <div class="rv-author">
+          <div class="rv-avatar">M</div>
+          <div><strong>Marco B.</strong><span>Cuneo</span></div>
+        </div>
+      </div>
+      <div class="rv-card" data-reveal-up style="--d:.12s">
+        <div class="rv-stars">★★★★★</div>
+        <p class="rv-text">"Ambiente bellissimo, professionalità altissima. La barba con rasoio è un'esperienza che consiglio a tutti. Tornerò sicuramente!"</p>
+        <div class="rv-author">
+          <div class="rv-avatar">L</div>
+          <div><strong>Luca R.</strong><span>Fossano</span></div>
+        </div>
+      </div>
+      <div class="rv-card" data-reveal-up style="--d:.24s">
+        <div class="rv-stars">★★★★★</div>
+        <p class="rv-text">"Ho trovato finalmente un barbiere che capisce esattamente cosa voglio. Taglio perfetto ogni volta, prezzi onesti e ottima compagnia."</p>
+        <div class="rv-author">
+          <div class="rv-avatar">A</div>
+          <div><strong>Alessandro V.</strong><span>Cuneo</span></div>
+        </div>
+      </div>
     </div>
   </div>
+</section>
 
-  <!-- SERVIZI -->
-  <section id="servizi" class="section">
-    <div class="container">
-      <div class="section-head" data-reveal>
-        <span class="section-num">01</span>
-        <div>
-          <p class="section-label">— I Nostri Servizi</p>
-          <h2 class="section-title">Cosa <em>Offriamo</em></h2>
+<!-- ═══ PRENOTA ═══ -->
+<section id="prenota" class="section section-alt">
+  <div class="container">
+    <div class="book-grid">
+      <div class="book-left" data-reveal>
+        <p class="s-label">— Fissa il Tuo Appuntamento</p>
+        <h2 class="s-title">Prenota<br><em>Online</em></h2>
+        <div class="s-divider"></div>
+        <p class="s-body">Scegli il servizio, la data e l'orario. Riceverai conferma su WhatsApp entro 60 minuti.</p>
+        <div class="book-info">
+          <div class="bi-row"><span class="bi-icon">📍</span><div><strong>Indirizzo</strong><span>Corso Galileo Ferraris 29, 12100 Cuneo</span></div></div>
+          <div class="bi-row"><span class="bi-icon">📱</span><div><strong>Telefono & WhatsApp</strong><span><a href="tel:+393512628553">+39 351 262 8553</a></span></div></div>
+          <div class="bi-row"><span class="bi-icon">🕐</span><div><strong>Risposta garantita</strong><span>Entro 60 minuti</span></div></div>
         </div>
       </div>
-
-      <div class="services-list">
-        <div class="service-item" data-service>
-          <div class="si-left">
-            <span class="si-num">01</span>
-            <div>
-              <h3 class="si-name">Taglio Capelli</h3>
-              <p class="si-desc">Sfumatura classica o look moderno. Lavaggio + styling incluso.</p>
-            </div>
+      <form class="book-form" id="bookForm" data-reveal-up>
+        <div class="bf-row">
+          <div class="bf-field">
+            <input type="text" id="bName" required placeholder=" " />
+            <label for="bName">Nome Completo</label>
           </div>
-          <div class="si-right">
-            <span class="si-price">€ 15</span>
-            <div class="si-arrow">→</div>
+          <div class="bf-field">
+            <input type="tel" id="bPhone" required placeholder=" " />
+            <label for="bPhone">Telefono</label>
           </div>
         </div>
-        <div class="service-item" data-service>
-          <div class="si-left">
-            <span class="si-num">02</span>
-            <div>
-              <h3 class="si-name">Barba Completa</h3>
-              <p class="si-desc">Rasoio a mano libera, hot towel e oli pregiati.</p>
-            </div>
-          </div>
-          <div class="si-right">
-            <span class="si-price">€ 12</span>
-            <div class="si-arrow">→</div>
-          </div>
+        <div class="bf-field">
+          <select id="bService" required>
+            <option value="" disabled selected></option>
+            <option>Taglio Capelli — €15</option>
+            <option>Barba Completa — €12</option>
+            <option>Taglio + Barba — €25</option>
+            <option>Trattamento Capelli — €20</option>
+            <option>Taglio Bambini — €10</option>
+            <option>Rifintura Espressa — €8</option>
+          </select>
+          <label for="bService">Servizio</label>
         </div>
-        <div class="service-item" data-service>
-          <div class="si-left">
-            <span class="si-num">03</span>
-            <div>
-              <h3 class="si-name">Taglio + Barba</h3>
-              <p class="si-desc">Il pacchetto completo per il gentiluomo moderno.</p>
-            </div>
+        <div class="bf-row">
+          <div class="bf-field">
+            <input type="date" id="bDate" required placeholder=" " />
+            <label for="bDate">Data</label>
           </div>
-          <div class="si-right">
-            <span class="si-price">€ 25</span>
-            <div class="si-arrow">→</div>
-          </div>
-        </div>
-        <div class="service-item" data-service>
-          <div class="si-left">
-            <span class="si-num">04</span>
-            <div>
-              <h3 class="si-name">Trattamento Capelli</h3>
-              <p class="si-desc">Maschera nutriente, colore o trattamento anti-caduta.</p>
-            </div>
-          </div>
-          <div class="si-right">
-            <span class="si-price">€ 20</span>
-            <div class="si-arrow">→</div>
-          </div>
-        </div>
-        <div class="service-item" data-service>
-          <div class="si-left">
-            <span class="si-num">05</span>
-            <div>
-              <h3 class="si-name">Taglio Bambini</h3>
-              <p class="si-desc">Ambiente rilassante, tanta pazienza e cura.</p>
-            </div>
-          </div>
-          <div class="si-right">
-            <span class="si-price">€ 10</span>
-            <div class="si-arrow">→</div>
-          </div>
-        </div>
-        <div class="service-item" data-service>
-          <div class="si-left">
-            <span class="si-num">06</span>
-            <div>
-              <h3 class="si-name">Rifintura Espressa</h3>
-              <p class="si-desc">Solo bordi e collo tra un taglio e l'altro.</p>
-            </div>
-          </div>
-          <div class="si-right">
-            <span class="si-price">€ 8</span>
-            <div class="si-arrow">→</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- GALLERIA -->
-  <section id="galleria" class="section section-dark">
-    <div class="container">
-      <div class="section-head" data-reveal>
-        <span class="section-num">02</span>
-        <div>
-          <p class="section-label">— Il Nostro Spazio</p>
-          <h2 class="section-title">La <em>Galleria</em></h2>
-        </div>
-      </div>
-    </div>
-
-    <div class="gallery-full">
-      <div class="gallery-col col-wide">
-        <div class="gallery-frame" data-parallax="0.08">
-          <img src="assets/shop1.jpg" alt="Afshin Barber Interior"
-            onerror="this.parentElement.classList.add('no-img')" />
-          <div class="gf-overlay"><span>Il Salone</span></div>
-        </div>
-      </div>
-      <div class="gallery-col col-stack">
-        <div class="gallery-frame" data-parallax="0.05">
-          <img src="assets/shop2.jpg" alt="Postazione"
-            onerror="this.parentElement.classList.add('no-img')" />
-          <div class="gf-overlay"><span>Postazione Premium</span></div>
-        </div>
-        <div class="gallery-frame" data-parallax="0.12">
-          <img src="assets/shop3.jpg" alt="Dettaglio"
-            onerror="this.parentElement.classList.add('no-img')" />
-          <div class="gf-overlay"><span>Dettaglio</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PRENOTA -->
-  <section id="prenota" class="section">
-    <div class="container">
-      <div class="booking-layout">
-        <div class="booking-left" data-reveal>
-          <span class="section-num">03</span>
-          <p class="section-label">— Fissa il Tuo Appuntamento</p>
-          <h2 class="section-title">Prenota<br /><em>Online</em></h2>
-          <div class="booking-meta">
-            <div class="bm-item">
-              <span class="bm-icon">📍</span>
-              <div>
-                <strong>Indirizzo</strong>
-                <span>Corso Galileo Ferraris 29, 12100 Cuneo</span>
-              </div>
-            </div>
-            <div class="bm-item">
-              <span class="bm-icon">📱</span>
-              <div>
-                <strong>Telefono & WhatsApp</strong>
-                <span><a href="tel:+393512628553">+39 351 262 8553</a></span>
-              </div>
-            </div>
-            <div class="bm-item">
-              <span class="bm-icon">⚡</span>
-              <div>
-                <strong>Conferma rapida</strong>
-                <span>Risposta entro 60 minuti</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <form class="booking-form" id="bookingForm" data-reveal-up>
-          <div class="form-row">
-            <div class="form-field">
-              <input type="text" id="fname" required placeholder=" " />
-              <label for="fname">Nome Completo</label>
-            </div>
-            <div class="form-field">
-              <input type="tel" id="fphone" required placeholder=" " />
-              <label for="fphone">Telefono</label>
-            </div>
-          </div>
-          <div class="form-field">
-            <select id="fservice" required>
+          <div class="bf-field">
+            <select id="bTime" required>
               <option value="" disabled selected></option>
-              <option>Taglio Capelli — €15</option>
-              <option>Barba Completa — €12</option>
-              <option>Taglio + Barba — €25</option>
-              <option>Trattamento Capelli — €20</option>
-              <option>Taglio Bambini — €10</option>
-              <option>Rifintura Espressa — €8</option>
+              <option>09:00</option><option>09:30</option><option>10:00</option>
+              <option>10:30</option><option>11:00</option><option>11:30</option>
+              <option>14:00</option><option>14:30</option><option>15:00</option>
+              <option>15:30</option><option>16:00</option><option>16:30</option>
+              <option>17:00</option><option>17:30</option><option>18:00</option>
             </select>
-            <label for="fservice">Servizio</label>
-          </div>
-          <div class="form-row">
-            <div class="form-field">
-              <input type="date" id="fdate" required placeholder=" " />
-              <label for="fdate">Data</label>
-            </div>
-            <div class="form-field">
-              <select id="ftime" required>
-                <option value="" disabled selected></option>
-                <option>09:00</option><option>09:30</option>
-                <option>10:00</option><option>10:30</option>
-                <option>11:00</option><option>11:30</option>
-                <option>14:00</option><option>14:30</option>
-                <option>15:00</option><option>15:30</option>
-                <option>16:00</option><option>16:30</option>
-                <option>17:00</option><option>17:30</option>
-                <option>18:00</option>
-              </select>
-              <label for="ftime">Orario</label>
-            </div>
-          </div>
-          <div class="form-field">
-            <textarea id="fnote" rows="3" placeholder=" "></textarea>
-            <label for="fnote">Note (opzionale)</label>
-          </div>
-          <button type="submit" class="form-btn" data-magnetic>
-            <span class="btn-text">Conferma Prenotazione</span>
-            <span class="btn-arrow">→</span>
-          </button>
-          <div class="form-success" id="formSuccess">
-            ✓ Richiesta inviata — ti contatteremo presto su WhatsApp.
-          </div>
-        </form>
-      </div>
-    </div>
-  </section>
-
-  <!-- ORARI -->
-  <section id="orari" class="section section-dark">
-    <div class="container">
-      <div class="section-head" data-reveal>
-        <span class="section-num">04</span>
-        <div>
-          <p class="section-label">— Quando Siamo Aperti</p>
-          <h2 class="section-title">Orari di <em>Apertura</em></h2>
-        </div>
-      </div>
-      <div class="orari-table" data-reveal-up>
-        <div class="ot-row" data-day="1"><span class="ot-day">Lunedì</span><span class="ot-time">09:00 – 19:00</span></div>
-        <div class="ot-row" data-day="2"><span class="ot-day">Martedì</span><span class="ot-time">09:00 – 19:00</span></div>
-        <div class="ot-row" data-day="3"><span class="ot-day">Mercoledì</span><span class="ot-time">09:00 – 19:00</span></div>
-        <div class="ot-row" data-day="4"><span class="ot-day">Giovedì</span><span class="ot-time">09:00 – 19:00</span></div>
-        <div class="ot-row" data-day="5"><span class="ot-day">Venerdì</span><span class="ot-time">09:00 – 19:00</span></div>
-        <div class="ot-row" data-day="6"><span class="ot-day">Sabato</span><span class="ot-time">09:00 – 18:00</span></div>
-        <div class="ot-row" data-day="0"><span class="ot-day">Domenica</span><span class="ot-closed">Chiuso</span></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTATTI -->
-  <section id="contatti" class="section">
-    <div class="container">
-      <div class="contact-layout">
-        <div class="contact-left" data-reveal>
-          <span class="section-num">05</span>
-          <p class="section-label">— Dove Siamo</p>
-          <h2 class="section-title">Vieni a <em>Trovarci</em></h2>
-          <div class="contact-links">
-            <a href="tel:+393512628553" class="cl-item">
-              <span class="cl-icon">📞</span>
-              <div><strong>Chiama</strong><span>+39 351 262 8553</span></div>
-            </a>
-            <a href="https://wa.me/393512628553" class="cl-item" target="_blank">
-              <span class="cl-icon">💬</span>
-              <div><strong>WhatsApp</strong><span>Scrivici ora</span></div>
-            </a>
-            <div class="cl-item">
-              <span class="cl-icon">📍</span>
-              <div><strong>Indirizzo</strong><span>Corso Galileo Ferraris 29, Cuneo</span></div>
-            </div>
+            <label for="bTime">Orario</label>
           </div>
         </div>
-        <div class="map-wrap" data-reveal-up>
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2833.0!2d7.5444!3d44.3854!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12cdbc8a3a1f2e9f%3A0x1!2sCorso+Galileo+Ferraris+29%2C+12100+Cuneo!5e0!3m2!1sit!2sit!4v1"
-            allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-            title="Mappa Afshin Barber Shop Cuneo">
-          </iframe>
+        <div class="bf-field">
+          <textarea id="bNote" rows="3" placeholder=" "></textarea>
+          <label for="bNote">Note (opzionale)</label>
+        </div>
+        <button type="submit" class="btn-fill full-w" data-magnetic>
+          Conferma Prenotazione <span class="btn-arr">→</span>
+        </button>
+        <div class="bf-success" id="bfSuccess">✓ Richiesta inviata — ti contatteremo su WhatsApp.</div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ORARI ═══ -->
+<section id="orari" class="section">
+  <div class="container orari-wrap">
+    <div data-reveal>
+      <p class="s-label">— Quando Siamo Aperti</p>
+      <h2 class="s-title">Orari di <em>Apertura</em></h2>
+      <div class="s-divider"></div>
+    </div>
+    <div class="orari-table" data-reveal-up>
+      <div class="ot-row" data-day="1"><span class="ot-d">Lunedì</span><span class="ot-t">09:00 – 19:00</span></div>
+      <div class="ot-row" data-day="2"><span class="ot-d">Martedì</span><span class="ot-t">09:00 – 19:00</span></div>
+      <div class="ot-row" data-day="3"><span class="ot-d">Mercoledì</span><span class="ot-t">09:00 – 19:00</span></div>
+      <div class="ot-row" data-day="4"><span class="ot-d">Giovedì</span><span class="ot-t">09:00 – 19:00</span></div>
+      <div class="ot-row" data-day="5"><span class="ot-d">Venerdì</span><span class="ot-t">09:00 – 19:00</span></div>
+      <div class="ot-row" data-day="6"><span class="ot-d">Sabato</span><span class="ot-t">09:00 – 18:00</span></div>
+      <div class="ot-row" data-day="0"><span class="ot-d">Domenica</span><span class="ot-closed">Chiuso</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CONTATTI ═══ -->
+<section id="contatti" class="section section-alt">
+  <div class="container">
+    <div class="contact-grid">
+      <div data-reveal>
+        <p class="s-label">— Dove Siamo</p>
+        <h2 class="s-title">Vieni a <em>Trovarci</em></h2>
+        <div class="s-divider"></div>
+        <div class="contact-list">
+          <a href="tel:+393512628553" class="cl-row">
+            <span class="clr-icon">📞</span>
+            <div><strong>Chiama</strong><span>+39 351 262 8553</span></div>
+          </a>
+          <a href="https://wa.me/393512628553" class="cl-row" target="_blank">
+            <span class="clr-icon">💬</span>
+            <div><strong>WhatsApp</strong><span>Scrivici ora</span></div>
+          </a>
+          <div class="cl-row">
+            <span class="clr-icon">📍</span>
+            <div><strong>Indirizzo</strong><span>Corso Galileo Ferraris 29, 12100 Cuneo</span></div>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer id="footer">
-    <div class="footer-inner">
-      <div class="footer-brand">
-        <span class="fb-af">AF</span><span class="fb-shin">SHIN</span>
-        <span class="fb-sub">Hair Style</span>
-      </div>
-      <div class="footer-mid">
-        <p>Corso Galileo Ferraris 29 · 12100 Cuneo (CN)</p>
-        <p><a href="tel:+393512628553">+39 351 262 8553</a></p>
-      </div>
-      <div class="footer-right">
-        <p class="footer-copy">© 2024 Afshin Hair Style</p>
+      <div class="map-box" data-reveal-up>
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2833!2d7.5444!3d44.3854!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sCorso+Galileo+Ferraris+29+Cuneo!5e0!3m2!1sit!2sit!4v1"
+          allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          title="Mappa Afshin Barber">
+        </iframe>
       </div>
     </div>
-  </footer>
+  </div>
+</section>
 
-  <!-- WHATSAPP FLOAT -->
-  <a href="https://wa.me/393512628553" class="wa-float" target="_blank" id="waFloat">
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
-    </svg>
-  </a>
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="ft-inner">
+    <div class="ft-brand">
+      <span class="ftb-af">AF</span><span class="ftb-shin">SHIN</span>
+      <small>Hair Style</small>
+    </div>
+    <p class="ft-addr">Corso Galileo Ferraris 29 · 12100 Cuneo (CN) · Italia</p>
+    <p class="ft-copy">© 2024 Afshin Hair Style. Tutti i diritti riservati.</p>
+  </div>
+</footer>
 
-  <!-- GSAP + ScrollTrigger + Lenis -->
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
-  <script src="js/animations.js"></script>
-  <script src="js/main.js"></script>
+<!-- WhatsApp float -->
+<a href="https://wa.me/393512628553" class="wa-fab" id="waFab" target="_blank">
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+</a>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="js/animations.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>

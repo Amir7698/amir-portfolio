@@ -3,6 +3,109 @@
 
 gsap.registerPlugin(ScrollTrigger);
 
+/* ══════════════════════════════════════
+   HERO SLIDER — curtain wipe + ken burns
+   ══════════════════════════════════════ */
+(function initSlider() {
+  const slides    = document.querySelectorAll('.slide');
+  const dots      = document.querySelectorAll('.sdot');
+  const curtain   = document.getElementById('slideCurtain');
+  const fill      = document.getElementById('slideProgressFill');
+  const counterEl = document.querySelector('.sc-current');
+  const total     = slides.length;
+  let current     = 0;
+  let timer       = null;
+  let isAnimating = false;
+
+  function pad(n) { return String(n + 1).padStart(2, '0'); }
+
+  function startProgress() {
+    if (!fill) return;
+    fill.classList.remove('running');
+    fill.style.width = '0%';
+    void fill.offsetWidth; // reflow
+    fill.classList.add('running');
+    fill.style.width = '100%';
+  }
+
+  function goTo(next, dir = 1) {
+    if (isAnimating || next === current) return;
+    isAnimating = true;
+    clearTimeout(timer);
+
+    const outSlide = slides[current];
+    const inSlide  = slides[next];
+
+    /* 1 — incoming slide instantly visible but under curtain */
+    gsap.set(inSlide, { opacity: 1, zIndex: 2 });
+    gsap.set(outSlide, { zIndex: 1 });
+
+    /* 2 — reset + position curtain on the entry side */
+    const fromX = dir >= 0 ? '100%' : '-100%';
+    const toX   = dir >= 0 ? '-100%' : '100%';
+    gsap.set(curtain, { x: fromX, opacity: 1 });
+
+    /* 3 — ken burns on incoming image */
+    const inImg = inSlide.querySelector('.slide-img');
+    gsap.set(inImg, { scale: 1.08 });
+    gsap.to(inImg, { scale: 1.0, duration: 7, ease: 'none' });
+
+    /* 4 — curtain sweeps across: enter → pause → exit */
+    const tl = gsap.timeline({
+      onComplete: () => {
+        gsap.set(outSlide, { opacity: 0, zIndex: 0 });
+        gsap.set(curtain, { opacity: 0 });
+        current = next;
+        isAnimating = false;
+        updateUI();
+        scheduleNext();
+        startProgress();
+      }
+    });
+
+    tl.to(curtain, { x: '0%', duration: 0.55, ease: 'power3.inOut' })
+      .to(curtain, { x: toX,  duration: 0.55, ease: 'power3.inOut', delay: 0.05 });
+  }
+
+  function updateUI() {
+    dots.forEach((d, i) => d.classList.toggle('active', i === current));
+    if (counterEl) counterEl.textContent = pad(current);
+  }
+
+  function scheduleNext() {
+    clearTimeout(timer);
+    timer = setTimeout(() => goTo((current + 1) % total, 1), 5000);
+  }
+
+  /* controls */
+  document.getElementById('slideNext')?.addEventListener('click', () => {
+    goTo((current + 1) % total, 1);
+  });
+  document.getElementById('slidePrev')?.addEventListener('click', () => {
+    goTo((current - 1 + total) % total, -1);
+  });
+  dots.forEach((dot, i) => {
+    dot.addEventListener('click', () => goTo(i, i > current ? 1 : -1));
+  });
+
+  /* keyboard */
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight') goTo((current + 1) % total, 1);
+    if (e.key === 'ArrowLeft')  goTo((current - 1 + total) % total, -1);
+  });
+
+  /* pause on hover */
+  document.getElementById('heroSlider')?.addEventListener('mouseenter', () => clearTimeout(timer));
+  document.getElementById('heroSlider')?.addEventListener('mouseleave', () => {
+    if (!isAnimating) scheduleNext();
+  });
+
+  /* init first slide */
+  gsap.set(slides[0], { opacity: 1 });
+  scheduleNext();
+  startProgress();
+})();
+
 /* ── Lenis smooth scroll ── */
 const lenis = new Lenis({
   duration: 1.2,

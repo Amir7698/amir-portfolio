@@ -398,6 +398,60 @@ body.hov #cursor-trail { opacity: 0; }
 .sv-btn { font-size: .68rem; letter-spacing: .15em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color .2s; }
 .sv-btn:hover { color: var(--white); }
 
+/* ══ WORKS ══ */
+.works-head {
+  display: flex; justify-content: space-between; align-items: flex-end;
+  margin-bottom: 3rem; flex-wrap: wrap; gap: 1.5rem;
+}
+.works-sub { font-size: .85rem; color: var(--muted); line-height: 1.8; text-align: right; max-width: 220px; }
+
+.works-track-wrap { position: relative; overflow: hidden; }
+.works-track {
+  display: flex; gap: 1.5rem;
+  padding-bottom: 1rem;
+  transition: transform .6s var(--ease);
+  cursor: grab;
+  user-select: none;
+}
+.works-track:active { cursor: grabbing; }
+
+.wk-card { flex: 0 0 360px; }
+.wk-img {
+  position: relative; overflow: hidden;
+  border-radius: 200px 200px 16px 16px;
+  aspect-ratio: 3/4; background: var(--card);
+}
+.wk-img img {
+  width: 100%; height: 100%; object-fit: cover;
+  object-position: top;
+  filter: grayscale(15%) brightness(.9);
+  transform: scale(1.04);
+  transition: transform .7s var(--ease), filter .5s;
+}
+.wk-card:hover .wk-img img { transform: scale(1); filter: grayscale(0%) brightness(1); }
+.wk-img.wk-empty { display: flex; align-items: center; justify-content: center; }
+.wk-img.wk-empty::after { content: 'FOTO'; font-size: .6rem; letter-spacing: .3em; color: var(--dim); }
+.wk-tag {
+  position: absolute; bottom: 1.2rem; left: 50%; transform: translateX(-50%);
+  background: rgba(13,13,13,.85); backdrop-filter: blur(8px);
+  color: var(--silver); font-size: .62rem; letter-spacing: .2em; text-transform: uppercase;
+  padding: .45rem 1.1rem; white-space: nowrap;
+  opacity: 0; transition: opacity .35s, transform .35s;
+  transform: translateX(-50%) translateY(6px);
+}
+.wk-card:hover .wk-tag { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+.works-arrows {
+  display: flex; gap: .6rem; justify-content: flex-end; margin-top: 1.5rem;
+}
+.wa-btn {
+  width: 48px; height: 48px;
+  border: 1px solid var(--border); background: none; color: var(--silver);
+  font-size: 1rem; cursor: pointer; display: flex; align-items: center; justify-content: center;
+  transition: background .25s, color .25s, border-color .25s, transform .2s;
+}
+.wa-btn:hover { background: var(--white); color: var(--bg); border-color: var(--white); transform: scale(1.05); }
+
 /* ══ GALLERY ══ */
 .gallery-mosaic {
   display: grid;

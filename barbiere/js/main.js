@@ -82,6 +82,48 @@ document.getElementById('bookForm')?.addEventListener('submit', function(e) {
   }, 1400);
 });
 
+/* ── Works track — drag + arrow scroll ── */
+(function() {
+  const track = document.getElementById('worksTrack');
+  if (!track) return;
+  const cardW = () => track.querySelector('.wk-card')?.offsetWidth + 24 || 384;
+  let offset = 0;
+  const maxOffset = () => -(track.scrollWidth / 2); // half because of duplicates
+
+  function clamp(v) {
+    const mn = maxOffset();
+    return v > 0 ? 0 : v < mn ? mn : v;
+  }
+  function apply() { track.style.transform = `translateX(${offset}px)`; }
+
+  document.getElementById('wkNext')?.addEventListener('click', () => {
+    offset = clamp(offset - cardW());
+    apply();
+  });
+  document.getElementById('wkPrev')?.addEventListener('click', () => {
+    offset = clamp(offset + cardW());
+    apply();
+  });
+
+  // drag
+  let dragging = false, startX = 0, startOff = 0;
+  track.addEventListener('mousedown', e => { dragging = true; startX = e.clientX; startOff = offset; track.style.transition = 'none'; });
+  window.addEventListener('mousemove', e => {
+    if (!dragging) return;
+    offset = clamp(startOff + (e.clientX - startX));
+    apply();
+  });
+  window.addEventListener('mouseup', () => { if (dragging) { dragging = false; track.style.transition = ''; } });
+
+  // touch
+  track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; startOff = offset; track.style.transition = 'none'; }, { passive: true });
+  track.addEventListener('touchmove', e => {
+    offset = clamp(startOff + (e.touches[0].clientX - startX));
+    apply();
+  }, { passive: true });
+  track.addEventListener('touchend', () => { track.style.transition = ''; });
+})();
+
 /* ── Smooth anchor clicks ── */
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {

@@ -260,11 +260,78 @@
   </div>
 </section>
 
-<!-- ═══ GALLERIA ═══ -->
+<!-- ═══ LAVORI ═══ -->
 <section id="galleria" class="section">
   <div class="container">
+    <div class="works-head" data-reveal>
+      <div>
+        <p class="s-label">— I Nostri Lavori</p>
+        <h2 class="s-title">Discover<br><em>Our Works</em></h2>
+      </div>
+      <p class="works-sub">
+        Ogni taglio racconta una storia.<br>
+        Sfumature, fade, design — il nostro lavoro parla da solo.
+      </p>
+    </div>
+    <div class="works-track-wrap">
+      <div class="works-track" id="worksTrack">
+        <div class="wk-card">
+          <div class="wk-img">
+            <img src="assets/cut1.jpg" alt="Crop Cut"
+              onerror="this.parentElement.classList.add('wk-empty')" />
+            <div class="wk-tag">Crop Cut</div>
+          </div>
+        </div>
+        <div class="wk-card">
+          <div class="wk-img">
+            <img src="assets/cut2.jpg" alt="Textured Top"
+              onerror="this.parentElement.classList.add('wk-empty')" />
+            <div class="wk-tag">Textured Top</div>
+          </div>
+        </div>
+        <div class="wk-card">
+          <div class="wk-img">
+            <img src="assets/cut3.jpg" alt="Fade Design"
+              onerror="this.parentElement.classList.add('wk-empty')" />
+            <div class="wk-tag">Fade & Design</div>
+          </div>
+        </div>
+        <!-- duplicates for infinite loop -->
+        <div class="wk-card">
+          <div class="wk-img">
+            <img src="assets/cut1.jpg" alt="Crop Cut"
+              onerror="this.parentElement.classList.add('wk-empty')" />
+            <div class="wk-tag">Crop Cut</div>
+          </div>
+        </div>
+        <div class="wk-card">
+          <div class="wk-img">
+            <img src="assets/cut2.jpg" alt="Textured Top"
+              onerror="this.parentElement.classList.add('wk-empty')" />
+            <div class="wk-tag">Textured Top</div>
+          </div>
+        </div>
+        <div class="wk-card">
+          <div class="wk-img">
+            <img src="assets/cut3.jpg" alt="Fade Design"
+              onerror="this.parentElement.classList.add('wk-empty')" />
+            <div class="wk-tag">Fade & Design</div>
+          </div>
+        </div>
+      </div>
+      <div class="works-arrows">
+        <button class="wa-btn" id="wkPrev">←</button>
+        <button class="wa-btn" id="wkNext">→</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ GALLERIA SPAZIO ═══ -->
+<section class="section section-alt">
+  <div class="container">
     <p class="s-label" data-reveal>— Il Nostro Spazio</p>
-    <h2 class="s-title" data-reveal>La <em>Galleria</em></h2>
+    <h2 class="s-title" data-reveal>Il <em>Salone</em></h2>
   </div>
   <div class="gallery-mosaic" data-reveal-up>
     <div class="gm-item gm-big">
@@ -278,7 +345,7 @@
       <div class="gm-label">Postazione Premium</div>
     </div>
     <div class="gm-item">
-      <img src="assets/logo.png" alt="Logo"
+      <img src="assets/logo.png" alt="Brand"
         onerror="this.parentElement.classList.add('gm-empty')" />
       <div class="gm-label">Afshin Hair Style</div>
     </div>

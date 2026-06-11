@@ -82,46 +82,84 @@ document.getElementById('bookForm')?.addEventListener('submit', function(e) {
   }, 1400);
 });
 
-/* ── Works track — drag + arrow scroll ── */
+/* ── Works track — drag + inertia + scroll bar ── */
 (function() {
-  const track = document.getElementById('worksTrack');
+  const track   = document.getElementById('worksTrack');
+  const wsbFill = document.getElementById('wsbFill');
   if (!track) return;
-  const cardW = () => track.querySelector('.wk-card')?.offsetWidth + 24 || 384;
-  let offset = 0;
-  const maxOffset = () => -(track.scrollWidth / 2); // half because of duplicates
 
-  function clamp(v) {
-    const mn = maxOffset();
-    return v > 0 ? 0 : v < mn ? mn : v;
+  const cardW    = () => (track.querySelector('.wk-card')?.offsetWidth || 360) + 24;
+  const maxOff   = () => -(track.scrollWidth - track.parentElement.clientWidth);
+
+  let offset = 0, vel = 0, raf = null;
+  let dragging = false, startX = 0, startOff = 0, lastX = 0, lastT = 0;
+
+  function clamp(v) { const mn = maxOff(); return v > 0 ? 0 : v < mn ? mn : v; }
+
+  function updateBar() {
+    if (!wsbFill) return;
+    const mn = maxOff();
+    const pct = mn === 0 ? 0 : (offset / mn) * 100;
+    wsbFill.style.width = clamp(pct, 0, 100) + '%';
   }
-  function apply() { track.style.transform = `translateX(${offset}px)`; }
 
-  document.getElementById('wkNext')?.addEventListener('click', () => {
-    offset = clamp(offset - cardW());
-    apply();
-  });
-  document.getElementById('wkPrev')?.addEventListener('click', () => {
-    offset = clamp(offset + cardW());
-    apply();
-  });
+  function apply(v) {
+    offset = clamp(v);
+    track.style.transform = `translateX(${offset}px)`;
+    updateBar();
+  }
 
-  // drag
-  let dragging = false, startX = 0, startOff = 0;
-  track.addEventListener('mousedown', e => { dragging = true; startX = e.clientX; startOff = offset; track.style.transition = 'none'; });
+  function momentum() {
+    vel *= 0.92;
+    if (Math.abs(vel) < 0.4) { cancelAnimationFrame(raf); return; }
+    apply(offset + vel);
+    raf = requestAnimationFrame(momentum);
+  }
+
+  document.getElementById('wkNext')?.addEventListener('click', () => apply(offset - cardW()));
+  document.getElementById('wkPrev')?.addEventListener('click', () => apply(offset + cardW()));
+
+  // mouse drag
+  track.addEventListener('mousedown', e => {
+    dragging = true; startX = lastX = e.clientX; startOff = offset;
+    lastT = Date.now(); vel = 0;
+    track.style.transition = 'none';
+    cancelAnimationFrame(raf);
+  });
   window.addEventListener('mousemove', e => {
     if (!dragging) return;
-    offset = clamp(startOff + (e.clientX - startX));
-    apply();
+    const now = Date.now(), dt = now - lastT || 1;
+    vel = (e.clientX - lastX) / dt * 16;
+    lastX = e.clientX; lastT = now;
+    apply(startOff + (e.clientX - startX));
   });
-  window.addEventListener('mouseup', () => { if (dragging) { dragging = false; track.style.transition = ''; } });
+  window.addEventListener('mouseup', () => {
+    if (!dragging) return;
+    dragging = false;
+    track.style.transition = '';
+    raf = requestAnimationFrame(momentum);
+  });
 
   // touch
-  track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; startOff = offset; track.style.transition = 'none'; }, { passive: true });
-  track.addEventListener('touchmove', e => {
-    offset = clamp(startOff + (e.touches[0].clientX - startX));
-    apply();
+  track.addEventListener('touchstart', e => {
+    startX = lastX = e.touches[0].clientX; startOff = offset;
+    lastT = Date.now(); vel = 0;
+    track.style.transition = 'none';
+    cancelAnimationFrame(raf);
   }, { passive: true });
-  track.addEventListener('touchend', () => { track.style.transition = ''; });
+  track.addEventListener('touchmove', e => {
+    const now = Date.now(), dt = now - lastT || 1;
+    const cx = e.touches[0].clientX;
+    vel = (cx - lastX) / dt * 16;
+    lastX = cx; lastT = now;
+    apply(startOff + (cx - startX));
+  }, { passive: true });
+  track.addEventListener('touchend', () => {
+    track.style.transition = '';
+    raf = requestAnimationFrame(momentum);
+  });
+
+  updateBar();
 })();
 
 /* ── Smooth anchor clicks ── */

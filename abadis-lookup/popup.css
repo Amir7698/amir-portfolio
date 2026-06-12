@@ -1,0 +1,255 @@
+/* ── Chip ─────────────────────────────────────────────────────────────────── */
+#abadis-chip {
+  all: initial;
+  position: absolute;
+  z-index: 2147483647;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #1a6bbd;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  transform: scale(0.7);
+  transition: opacity 0.18s ease, transform 0.18s ease, box-shadow 0.15s;
+}
+#abadis-chip.abadis-chip-visible {
+  opacity: 1;
+  transform: scale(1);
+}
+#abadis-chip:hover {
+  box-shadow: 0 4px 18px rgba(26,107,189,0.6);
+  transform: scale(1.1);
+}
+
+/* ── Popup shell ─────────────────────────────────────────────────────────── */
+#abadis-popup {
+  all: initial;
+  position: absolute;
+  z-index: 2147483646;
+  width: 320px;
+  max-height: 420px;
+  background: #1e1e2e;
+  color: #cdd6f4;
+  border: 1px solid #313244;
+  border-radius: 12px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.6);
+  font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+  font-size: 13px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: abadis-pop 0.18s cubic-bezier(.22,.68,0,1.2);
+}
+@keyframes abadis-pop {
+  from { opacity: 0; transform: scale(0.92) translateY(8px); }
+  to   { opacity: 1; transform: scale(1)    translateY(0);   }
+}
+
+/* ── Header ──────────────────────────────────────────────────────────────── */
+.abadis-header {
+  all: initial;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  background: #181825;
+  border-bottom: 1px solid #313244;
+  gap: 8px;
+}
+.abadis-header-left {
+  all: initial;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.abadis-logo-svg {
+  flex-shrink: 0;
+}
+.abadis-brand {
+  all: initial;
+  font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  color: #89b4fa;
+  letter-spacing: 0.4px;
+}
+.abadis-word-title {
+  all: initial;
+  font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #cdd6f4;
+  direction: ltr;
+  flex: 1;
+  text-align: center;
+}
+.abadis-close {
+  all: initial;
+  cursor: pointer;
+  font-size: 13px;
+  color: #585b70;
+  padding: 3px 6px;
+  border-radius: 5px;
+  line-height: 1;
+  transition: background 0.12s, color 0.12s;
+  flex-shrink: 0;
+}
+.abadis-close:hover { background: #313244; color: #f38ba8; }
+
+/* ── Section label ───────────────────────────────────────────────────────── */
+.abadis-section-label {
+  all: initial;
+  display: block;
+  font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  color: #6c7086;
+  letter-spacing: 0.9px;
+  padding: 8px 14px 4px;
+  direction: rtl;
+  text-transform: uppercase;
+}
+
+/* ── Body / scroll ───────────────────────────────────────────────────────── */
+.abadis-body {
+  all: initial;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  max-height: 300px;
+  padding: 4px 0 2px;
+  scrollbar-width: thin;
+  scrollbar-color: #45475a transparent;
+}
+
+/* ── Card ────────────────────────────────────────────────────────────────── */
+.abadis-card {
+  all: initial;
+  display: flex;
+  flex-direction: column;
+  padding: 8px 14px 10px;
+  border-bottom: 1px solid #181825;
+  direction: rtl;
+  transition: background 0.1s;
+}
+.abadis-card:last-child { border-bottom: none; }
+.abadis-card:hover { background: #262637; }
+
+.abadis-card-top {
+  all: initial;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+.abadis-author {
+  all: initial;
+  font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  color: #89b4fa;
+}
+.abadis-idx {
+  all: initial;
+  font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+  font-size: 10px;
+  color: #45475a;
+  background: #313244;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.abadis-def {
+  all: initial;
+  display: block;
+  font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #cdd6f4;
+  line-height: 1.55;
+  direction: rtl;
+}
+
+.abadis-card-bot {
+  all: initial;
+  display: flex;
+  align-items: center;
+  margin-top: 6px;
+}
+.abadis-votes {
+  all: initial;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+  font-size: 11px;
+}
+.abadis-like    { all: initial; font-family: "Segoe UI",Tahoma,Arial,sans-serif; font-size:11px; color: #a6e3a1; }
+.abadis-dislike { all: initial; font-family: "Segoe UI",Tahoma,Arial,sans-serif; font-size:11px; color: #f38ba8; }
+.abadis-sep     { all: initial; font-family: "Segoe UI",Tahoma,Arial,sans-serif; font-size:11px; color: #45475a; }
+
+/* ── Loading spinner ─────────────────────────────────────────────────────── */
+.abadis-spinner-wrap {
+  all: initial;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 28px 0;
+  font-family: "Segoe UI",Tahoma,Arial,sans-serif;
+  font-size: 12px;
+  color: #585b70;
+  direction: rtl;
+}
+.abadis-spinner {
+  all: initial;
+  width: 22px;
+  height: 22px;
+  border: 2px solid #313244;
+  border-top-color: #89b4fa;
+  border-radius: 50%;
+  animation: abadis-spin 0.7s linear infinite;
+  display: block;
+}
+@keyframes abadis-spin { to { transform: rotate(360deg); } }
+
+/* ── Empty ───────────────────────────────────────────────────────────────── */
+.abadis-empty {
+  all: initial;
+  display: block;
+  font-family: "Segoe UI",Tahoma,Arial,sans-serif;
+  font-size: 13px;
+  color: #585b70;
+  padding: 24px 14px;
+  text-align: center;
+  direction: rtl;
+}
+
+/* ── Footer ──────────────────────────────────────────────────────────────── */
+.abadis-footer {
+  all: initial;
+  display: flex;
+  justify-content: center;
+  padding: 8px 14px 10px;
+  border-top: 1px solid #313244;
+  background: #181825;
+}
+.abadis-footer a {
+  all: initial;
+  font-family: "Segoe UI",Tahoma,Arial,sans-serif;
+  font-size: 11px;
+  color: #89b4fa;
+  cursor: pointer;
+  direction: rtl;
+  text-decoration: none;
+}
+.abadis-footer a:hover { text-decoration: underline; color: #b4befe; }

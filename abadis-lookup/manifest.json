@@ -1,0 +1,20 @@
+{
+  "manifest_version": 2,
+  "name": "Abadis Lookup",
+  "version": "1.0",
+  "description": "Double-click any word to see its Persian definition from Abadis.ir",
+  "permissions": [
+    "activeTab",
+    "*://abadis.ir/*"
+  ],
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "css": ["popup.css"]
+    }
+  ]
+}
